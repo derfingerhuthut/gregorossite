@@ -1,0 +1,486 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .gos-root {
+    font-family: 'Exo 2', sans-serif;
+    background: #0a1a0d;
+    color: #e8ffe0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .gos-hero {
+    background: linear-gradient(160deg, #0d2b12 0%, #0a1a0d 60%);
+    border-bottom: 1px solid #2a6e30;
+    padding: 64px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gos-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #3dff6022 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .gos-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .gos-logo-icon {
+    width: 52px; height: 52px;
+    background: #1aff6e;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #052b0e;
+    flex-shrink: 0;
+  }
+
+  .gos-logo-text {
+    font-size: 28px;
+    font-weight: 900;
+    color: #1aff6e;
+    letter-spacing: -0.5px;
+  }
+
+  .gos-logo-text span { color: #e8ffe0; font-weight: 400; font-size: 20px; }
+
+  .gos-tagline {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #f0fff0;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+    max-width: 600px;
+  }
+
+  .gos-tagline em {
+    font-style: normal;
+    color: #1aff6e;
+  }
+
+  .gos-sub {
+    font-size: 17px;
+    color: #7fc98a;
+    margin-bottom: 36px;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .gos-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .gos-btn-primary {
+    background: #1aff6e;
+    color: #052b0e;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .gos-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px #1aff6e44; }
+
+  .gos-btn-ghost {
+    background: transparent;
+    color: #1aff6e;
+    border: 1.5px solid #2a7a38;
+    border-radius: 10px;
+    padding: 13px 28px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .gos-btn-ghost:hover { border-color: #1aff6e; background: #1aff6e11; }
+
+  .gos-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 24px 48px;
+    background: #0c1f0f;
+    border-bottom: 1px solid #1e4a22;
+  }
+
+  .gos-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #102714;
+    border: 1px solid #2a6030;
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 13px;
+    color: #a0f0a8;
+    font-weight: 500;
+  }
+  .gos-badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #1aff6e;
+    flex-shrink: 0;
+  }
+
+  .gos-section {
+    padding: 52px 48px;
+  }
+
+  .gos-section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #2ec94a;
+    margin-bottom: 10px;
+  }
+
+  .gos-section-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #e8ffe0;
+    margin-bottom: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  .gos-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 52px;
+  }
+
+  .gos-stat {
+    background: #0e2012;
+    border: 1px solid #1e4a22;
+    border-radius: 14px;
+    padding: 20px 18px;
+  }
+  .gos-stat-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1aff6e;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .gos-stat-label {
+    font-size: 13px;
+    color: #6da878;
+  }
+
+  .gos-apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .gos-app-card {
+    background: #0e2012;
+    border: 1px solid #1e4a22;
+    border-radius: 16px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    transition: border-color 0.15s, transform 0.15s;
+    cursor: default;
+  }
+  .gos-app-card:hover {
+    border-color: #1aff6e;
+    transform: translateY(-3px);
+  }
+
+  .gos-app-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: #163420;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: 1px solid #2a6030;
+    overflow: hidden;
+  }
+  .gos-app-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+
+  .gos-app-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #d8f5da;
+  }
+
+  .gos-app-desc {
+    font-size: 12px;
+    color: #5a9462;
+    line-height: 1.4;
+  }
+
+  .gos-app-free {
+    font-size: 11px;
+    font-weight: 700;
+    background: #0d2b12;
+    border: 1px solid #1aff6e;
+    color: #1aff6e;
+    border-radius: 999px;
+    padding: 3px 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .gos-divider {
+    height: 1px;
+    background: #1e4a22;
+    margin: 0 48px;
+  }
+
+  .gos-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .gos-feature-card {
+    background: #0e2012;
+    border: 1px solid #1e4a22;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .gos-feat-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: #163420;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    border: 1px solid #2a6030;
+  }
+
+  .gos-feat-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #d8f5da;
+    margin-bottom: 4px;
+  }
+
+  .gos-feat-desc {
+    font-size: 12px;
+    color: #5a9462;
+    line-height: 1.5;
+  }
+
+  .gos-footer {
+    background: #070f08;
+    border-top: 1px solid #1e4a22;
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .gos-footer-logo {
+    font-size: 18px;
+    font-weight: 900;
+    color: #1aff6e;
+    letter-spacing: -0.5px;
+  }
+
+  .gos-footer-copy {
+    font-size: 12px;
+    color: #3a6b40;
+  }
+
+  @media (max-width: 600px) {
+    .gos-hero, .gos-section, .gos-badges, .gos-divider, .gos-footer { padding-left: 20px; padding-right: 20px; }
+    .gos-tagline { font-size: 30px; }
+  }
+</style>
+
+<div class="gos-root">
+
+  <div class="gos-hero">
+    <div class="gos-logo-row">
+      <div class="gos-logo-icon">G</div>
+      <div class="gos-logo-text">GregorOS <span>v3.0</span></div>
+    </div>
+    <div class="gos-tagline">Das <em>schnellste</em> und sicherste Betriebssystem</div>
+    <div class="gos-sub">Blitzschnell. Bloatware-frei. Für alle. GregorOS läuft auf jedem Gerät – mit nur 500 MB RAM-Verbrauch.</div>
+    <div class="gos-btns">
+      <button class="gos-btn-primary">Jetzt kostenlos herunterladen</button>
+      <button class="gos-btn-ghost">Mehr erfahren</button>
+    </div>
+  </div>
+
+  <div class="gos-badges">
+    <div class="gos-badge"><div class="gos-badge-dot"></div>Nur 500 MB RAM</div>
+    <div class="gos-badge"><div class="gos-badge-dot"></div>0 Bloatware</div>
+    <div class="gos-badge"><div class="gos-badge-dot"></div>Kompatibel mit allen Games & Programmen</div>
+    <div class="gos-badge"><div class="gos-badge-dot"></div>Gregor Sicherheitsupdates</div>
+    <div class="gos-badge"><div class="gos-badge-dot"></div>100% kostenlos</div>
+  </div>
+
+  <div class="gos-section">
+    <div class="gos-section-label">Statistiken</div>
+    <div class="gos-section-title">Zahlen, die für sich sprechen</div>
+    <div class="gos-stats">
+      <div class="gos-stat">
+        <div class="gos-stat-num">500MB</div>
+        <div class="gos-stat-label">RAM-Verbrauch</div>
+      </div>
+      <div class="gos-stat">
+        <div class="gos-stat-num">0</div>
+        <div class="gos-stat-label">Bloatware</div>
+      </div>
+      <div class="gos-stat">
+        <div class="gos-stat-num">5</div>
+        <div class="gos-stat-label">Inklusive Apps</div>
+      </div>
+      <div class="gos-stat">
+        <div class="gos-stat-num">100%</div>
+        <div class="gos-stat-label">Game-kompatibel</div>
+      </div>
+    </div>
+
+    <div class="gos-section-label">Vorinstallierte Apps</div>
+    <div class="gos-section-title">Alles dabei – gratis</div>
+    <div class="gos-apps-grid">
+
+      <div class="gos-app-card">
+        <div class="gos-app-icon">
+          <img src="TextEditorIcon.png" alt="GregorNotes" onerror="this.style.display='none';this.parentElement.textContent='📝'">
+        </div>
+        <div class="gos-app-name">GregorNotes</div>
+        <div class="gos-app-desc">Schneller, leichter Texteditor für alle deine Notizen</div>
+        <div class="gos-app-free">GRATIS</div>
+      </div>
+
+      <div class="gos-app-card">
+        <div class="gos-app-icon">
+          <img src="ImageEditorIcon.png" alt="HerbertStudio" onerror="this.style.display='none';this.parentElement.textContent='🎨'">
+        </div>
+        <div class="gos-app-name">HerbertStudio</div>
+        <div class="gos-app-desc">Professioneller Bildeditor direkt im System</div>
+        <div class="gos-app-free">GRATIS</div>
+      </div>
+
+      <div class="gos-app-card">
+        <div class="gos-app-icon">
+          <img src="KruschtelConverter.png" alt="KruschtelConverter" onerror="this.style.display='none';this.parentElement.textContent='🔄'">
+        </div>
+        <div class="gos-app-name">KruschtelConverter</div>
+        <div class="gos-app-desc">Konvertiere Dateien aller Art mit einem Klick</div>
+        <div class="gos-app-free">GRATIS</div>
+      </div>
+
+      <div class="gos-app-card">
+        <div class="gos-app-icon">
+          <img src="lottemailIcon.png" alt="Lotte Mail" onerror="this.style.display='none';this.parentElement.textContent='✉️'">
+        </div>
+        <div class="gos-app-name">Lotte Mail</div>
+        <div class="gos-app-desc">Elegantes E-Mail-Programm für deinen Alltag</div>
+        <div class="gos-app-free">GRATIS</div>
+      </div>
+
+      <div class="gos-app-card">
+        <div class="gos-app-icon">
+          <img src="mannimusicicon.png" alt="ManniMusic" onerror="this.style.display='none';this.parentElement.textContent='🎵'">
+        </div>
+        <div class="gos-app-name">ManniMusic</div>
+        <div class="gos-app-desc">Musik abspielen, verwalten und genießen</div>
+        <div class="gos-app-free">GRATIS</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gos-divider"></div>
+
+  <div class="gos-section">
+    <div class="gos-section-label">Features</div>
+    <div class="gos-section-title">Warum GregorOS?</div>
+    <div class="gos-features">
+
+      <div class="gos-feature-card">
+        <div class="gos-feat-icon">⚡</div>
+        <div>
+          <div class="gos-feat-name">Ultraleicht</div>
+          <div class="gos-feat-desc">Nur 500 MB RAM – läuft flüssig auf alten und neuen Geräten</div>
+        </div>
+      </div>
+
+      <div class="gos-feature-card">
+        <div class="gos-feat-icon">🛡️</div>
+        <div>
+          <div class="gos-feat-name">Gregor Sicherheitsupdates</div>
+          <div class="gos-feat-desc">Regelmäßige Updates halten dein System immer sicher und aktuell</div>
+        </div>
+      </div>
+
+      <div class="gos-feature-card">
+        <div class="gos-feat-icon">🎮</div>
+        <div>
+          <div class="gos-feat-name">Volle Kompatibilität</div>
+          <div class="gos-feat-desc">Alle Games und Programme laufen ohne Probleme auf GregorOS</div>
+        </div>
+      </div>
+
+      <div class="gos-feature-card">
+        <div class="gos-feat-icon">🚫</div>
+        <div>
+          <div class="gos-feat-name">Kein Bloatware</div>
+          <div class="gos-feat-desc">Keine unnötige Software, keine Werbe-Apps – nur was du brauchst</div>
+        </div>
+      </div>
+
+      <div class="gos-feature-card">
+        <div class="gos-feat-icon">💸</div>
+        <div>
+          <div class="gos-feat-name">Komplett kostenlos</div>
+          <div class="gos-feat-desc">GregorOS und alle vorinstallierten Apps sind für immer gratis</div>
+        </div>
+      </div>
+
+      <div class="gos-feature-card">
+        <div class="gos-feat-icon">🌿</div>
+        <div>
+          <div class="gos-feat-name">Frisches Design</div>
+          <div class="gos-feat-desc">Modernes, cleanes grünes Interface – angenehm für die Augen</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gos-footer">
+    <div class="gos-footer-logo">GregorOS</div>
+    <div class="gos-footer-copy">© 2026 GregorOS. Alle Rechte vorbehalten.</div>
+  </div>
+
+</div>

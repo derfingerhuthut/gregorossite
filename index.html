@@ -1,4 +1,3 @@
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
 
@@ -317,9 +316,210 @@
     color: #3a6b40;
   }
 
+  .gos-tabs {
+    display: flex;
+    gap: 0;
+    background: #0c1f0f;
+    border-bottom: 1px solid #1e4a22;
+    padding: 0 48px;
+    overflow-x: auto;
+  }
+
+  .gos-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #5a9462;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+  .gos-tab:hover { color: #a0f0a8; }
+  .gos-tab.active {
+    color: #1aff6e;
+    border-bottom-color: #1aff6e;
+  }
+
+  .gos-tab-badge {
+    display: inline-block;
+    background: #1aff6e22;
+    border: 1px solid #1aff6e55;
+    color: #1aff6e;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 1px 7px;
+    margin-left: 7px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+  }
+
+  .gos-page { display: none; }
+  .gos-page.active { display: block; }
+
+  .gos-beta-section {
+    padding: 52px 48px;
+    max-width: 580px;
+  }
+
+  .gos-beta-card {
+    background: #0e2012;
+    border: 1px solid #1e4a22;
+    border-radius: 18px;
+    padding: 36px 32px;
+  }
+
+  .gos-beta-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #e8ffe0;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .gos-beta-desc {
+    font-size: 14px;
+    color: #5a9462;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .gos-input-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #2ec94a;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .gos-input {
+    width: 100%;
+    background: #071209;
+    border: 1.5px solid #2a6030;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+    color: #e8ffe0;
+    margin-bottom: 24px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .gos-input::placeholder { color: #3a6b40; }
+  .gos-input:focus { border-color: #1aff6e; }
+
+  .gos-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: #071209;
+    border: 1.5px solid #1e4a22;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .gos-checkbox-row:hover { border-color: #2a6e30; }
+  .gos-checkbox-row.checked { border-color: #1aff6e44; background: #071f0b; }
+
+  .gos-checkbox {
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    border: 1.5px solid #2a6e30;
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .gos-checkbox-row.checked .gos-checkbox {
+    background: #1aff6e;
+    border-color: #1aff6e;
+  }
+  .gos-checkbox-check {
+    display: none;
+    width: 11px; height: 8px;
+    border-left: 2.5px solid #052b0e;
+    border-bottom: 2.5px solid #052b0e;
+    transform: rotate(-45deg) translateY(-1px);
+  }
+  .gos-checkbox-row.checked .gos-checkbox-check { display: block; }
+
+  .gos-checkbox-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #d8f5da;
+    margin-bottom: 3px;
+  }
+  .gos-checkbox-text span {
+    font-size: 12px;
+    color: #4a8455;
+    line-height: 1.5;
+  }
+
+  .gos-beta-submit {
+    width: 100%;
+    background: #1aff6e;
+    color: #052b0e;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.12s, box-shadow 0.12s, opacity 0.15s;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .gos-beta-submit.ready {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .gos-beta-submit.ready:hover { transform: translateY(-2px); box-shadow: 0 6px 24px #1aff6e44; }
+
+  .gos-beta-success {
+    display: none;
+    text-align: center;
+    padding: 20px 0 4px;
+  }
+  .gos-beta-success-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: #0d2b12;
+    border: 2px solid #1aff6e;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 28px;
+  }
+  .gos-beta-success h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1aff6e;
+    margin-bottom: 8px;
+  }
+  .gos-beta-success p {
+    font-size: 14px;
+    color: #5a9462;
+    line-height: 1.6;
+  }
+
   @media (max-width: 600px) {
     .gos-hero, .gos-section, .gos-badges, .gos-divider, .gos-footer { padding-left: 20px; padding-right: 20px; }
     .gos-tagline { font-size: 30px; }
+    .gos-tabs { padding: 0 20px; }
+    .gos-beta-section { padding: 32px 20px; }
+    .gos-beta-card { padding: 24px 20px; }
   }
 </style>
 
@@ -346,6 +546,13 @@
     <div class="gos-badge"><div class="gos-badge-dot"></div>100% kostenlos</div>
   </div>
 
+  <div class="gos-tabs">
+    <button class="gos-tab active" onclick="switchTab('main', this)">Übersicht</button>
+    <button class="gos-tab" onclick="switchTab('beta', this)">Beta Test <span class="gos-tab-badge">NEU</span></button>
+    <button class="gos-tab" onclick="switchTab('preview', this)">Preview Updates <span class="gos-tab-badge">GRATIS</span></button>
+  </div>
+
+  <div id="page-main" class="gos-page active">
   <div class="gos-section">
     <div class="gos-section-label">Statistiken</div>
     <div class="gos-section-title">Zahlen, die für sich sprechen</div>
@@ -477,6 +684,121 @@
 
     </div>
   </div>
+  </div><!-- end page-main -->
+
+  <div id="page-beta" class="gos-page">
+    <div class="gos-beta-section">
+      <div class="gos-section-label">Beta Programm</div>
+      <div class="gos-section-title" style="margin-bottom: 8px;">Werde Beta-Tester</div>
+      <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;">Hilf uns, GregorOS zu verbessern. Als Beta-Tester läufst du GregorOS im Dual Boot neben deinem aktuellen System – einfach und sicher.</div>
+
+      <div class="gos-beta-card">
+        <div id="beta-form">
+          <div class="gos-beta-title">Jetzt anmelden</div>
+          <div class="gos-beta-desc">Füll das Formular aus und stimme den Beta-Bedingungen zu, um loszulegen.</div>
+
+          <label class="gos-input-label" for="beta-name">Dein Vorname</label>
+          <input class="gos-input" id="beta-name" type="text" placeholder="z.B. Gregor" maxlength="40" oninput="checkForm()" />
+
+          <label class="gos-input-label" style="margin-bottom:12px;">Beta-Bedingungen</label>
+
+          <div class="gos-checkbox-row" id="cb1-row" onclick="toggleCheck('cb1-row', 'cb1')">
+            <div class="gos-checkbox" id="cb1"><div class="gos-checkbox-check"></div></div>
+            <div class="gos-checkbox-text">
+              <strong>Dual Boot einrichten (Easy)</strong>
+              <span>Ich stimme zu, GregorOS per Dual Boot neben meinem aktuellen Betriebssystem zu installieren. Der Setup-Assistent führt mich Schritt für Schritt durch den Vorgang.</span>
+            </div>
+          </div>
+
+          <div class="gos-checkbox-row" id="cb2-row" onclick="toggleCheck('cb2-row', 'cb2')">
+            <div class="gos-checkbox" id="cb2"><div class="gos-checkbox-check"></div></div>
+            <div class="gos-checkbox-text">
+              <strong>GregorOS aktiv nutzen</strong>
+              <span>Ich verpflichte mich, GregorOS regelmäßig zu starten und Feedback zu Fehlern, Performance und Kompatibilität zu geben.</span>
+            </div>
+          </div>
+
+          <button class="gos-beta-submit" id="beta-submit" onclick="submitBeta()">Als Beta-Tester anmelden</button>
+        </div>
+
+        <div class="gos-beta-success" id="beta-success">
+          <div class="gos-beta-success-icon">✓</div>
+          <h3 id="success-title">Willkommen im Beta-Team!</h3>
+          <p id="success-msg">Du bist jetzt registriert. Schau bald wieder rein – wir schicken dir den Dual-Boot-Guide direkt auf dieser Seite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-preview" class="gos-page">
+    <div class="gos-beta-section" style="max-width:660px;">
+      <div class="gos-section-label">Preview Updates</div>
+      <div class="gos-section-title" style="margin-bottom:8px;">Exklusive Angebote für Mitglieder</div>
+      <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;">Registriere dich für GregorOS Preview Updates und erhalte als Erstes Zugang zu Gratis-Software, neuen Features und exklusiven Deals – direkt in dein Postfach.</div>
+
+      <div class="gos-section-label" style="margin-bottom:14px;">Aktuelles Highlight</div>
+      <div style="background:#0e2012;border:1px solid #1e4a22;border-radius:16px;padding:22px 20px;margin-bottom:32px;">
+        <div style="font-size:13px;font-weight:700;color:#1aff6e;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Nur für Mitglieder – kostenlos</div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;">
+            <div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;">
+              <img src="word.png" alt="Word" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.parentElement.textContent='W'">
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#d8f5da;">Word</div>
+            <div style="font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;">GRATIS</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;">
+            <div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;">
+              <img src="excel.png" alt="Excel" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.parentElement.textContent='X'">
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#d8f5da;">Excel</div>
+            <div style="font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;">GRATIS</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;">
+            <div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;">
+              <img src="powerpoint.png" alt="PowerPoint" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.parentElement.textContent='P'">
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#d8f5da;">PowerPoint</div>
+            <div style="font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;">GRATIS</div>
+          </div>
+
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:#3a6b40;line-height:1.5;">Microsoft Office – Word, Excel & PowerPoint – komplett kostenlos für alle registrierten Preview-Mitglieder.</div>
+      </div>
+
+      <div class="gos-beta-card">
+        <div id="preview-form">
+          <div class="gos-beta-title">Jetzt registrieren</div>
+          <div class="gos-beta-desc">Trag dich ein und erhalte sofort Zugang zu den Gratis-Angeboten.</div>
+
+          <label class="gos-input-label" for="preview-name">Dein Vorname</label>
+          <input class="gos-input" id="preview-name" type="text" placeholder="z.B. Gregor" maxlength="40" oninput="checkPreviewForm()" />
+
+          <label class="gos-input-label" for="preview-email">E-Mail-Adresse</label>
+          <input class="gos-input" id="preview-email" type="email" placeholder="deine@email.de" oninput="checkPreviewForm()" />
+
+          <div class="gos-checkbox-row" id="pcb1-row" onclick="toggleCheckPreview('pcb1-row')">
+            <div class="gos-checkbox" id="pcb1"><div class="gos-checkbox-check"></div></div>
+            <div class="gos-checkbox-text">
+              <strong>Preview-Updates abonnieren</strong>
+              <span>Ich möchte E-Mails zu neuen GregorOS Features, exklusiven Gratis-Angeboten und Preview-Releases erhalten.</span>
+            </div>
+          </div>
+
+          <button class="gos-beta-submit" id="preview-submit" onclick="submitPreview()">Kostenlos registrieren &amp; Zugang erhalten</button>
+        </div>
+
+        <div class="gos-beta-success" id="preview-success">
+          <div class="gos-beta-success-icon">✓</div>
+          <h3 id="preview-success-title">Du bist dabei!</h3>
+          <p id="preview-success-msg">Wir schicken dir gleich eine E-Mail mit den Download-Links für Word, Excel und PowerPoint – komplett kostenlos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="gos-footer">
     <div class="gos-footer-logo">GregorOS</div>
@@ -484,3 +806,65 @@
   </div>
 
 </div>
+
+<script>
+function switchTab(pageId, btn) {
+  document.querySelectorAll('.gos-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.gos-page').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('page-' + pageId).classList.add('active');
+}
+
+function toggleCheck(rowId, cbId) {
+  var row = document.getElementById(rowId);
+  row.classList.toggle('checked');
+  checkForm();
+}
+
+function checkForm() {
+  var name = document.getElementById('beta-name').value.trim();
+  var cb1 = document.getElementById('cb1-row').classList.contains('checked');
+  var cb2 = document.getElementById('cb2-row').classList.contains('checked');
+  var btn = document.getElementById('beta-submit');
+  if (name.length >= 2 && cb1 && cb2) {
+    btn.classList.add('ready');
+  } else {
+    btn.classList.remove('ready');
+  }
+}
+
+function submitBeta() {
+  var name = document.getElementById('beta-name').value.trim();
+  document.getElementById('beta-form').style.display = 'none';
+  var success = document.getElementById('beta-success');
+  success.style.display = 'block';
+  document.getElementById('success-title').textContent = 'Willkommen, ' + name + '!';
+  document.getElementById('success-msg').textContent = 'Du bist jetzt als Beta-Tester registriert. Schau bald wieder rein – der Dual-Boot-Guide wartet auf dich.';
+}
+
+function toggleCheckPreview(rowId) {
+  document.getElementById(rowId).classList.toggle('checked');
+  checkPreviewForm();
+}
+
+function checkPreviewForm() {
+  var name = document.getElementById('preview-name').value.trim();
+  var email = document.getElementById('preview-email').value.trim();
+  var cb = document.getElementById('pcb1-row').classList.contains('checked');
+  var btn = document.getElementById('preview-submit');
+  if (name.length >= 2 && email.includes('@') && cb) {
+    btn.classList.add('ready');
+  } else {
+    btn.classList.remove('ready');
+  }
+}
+
+function submitPreview() {
+  var name = document.getElementById('preview-name').value.trim();
+  document.getElementById('preview-form').style.display = 'none';
+  var s = document.getElementById('preview-success');
+  s.style.display = 'block';
+  document.getElementById('preview-success-title').textContent = 'Willkommen, ' + name + '!';
+  document.getElementById('preview-success-msg').textContent = 'Du erhältst gleich eine E-Mail mit den Download-Links für Word, Excel und PowerPoint – alles kostenlos für dich als Preview-Mitglied.';
+}
+</script>

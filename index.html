@@ -1,879 +1,2104 @@
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+.gr{font-family:'Exo 2',sans-serif;background:#0a1a0d;color:#e8ffe0;min-height:100vh;overflow-x:hidden;scroll-behavior:smooth;}
+.nav-sticky{position:sticky;top:0;z-index:1000;background:#0c1f0f;border-bottom:1px solid #1e4a22;box-shadow:0 4px 20px rgba(0,0,0,0.5);}
+.hero{background:linear-gradient(160deg,#0d2b12 0%,#0a1a0d 60%);border-bottom:1px solid #2a6e30;padding:100px 48px 60px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,#3dff6022 0%,transparent 70%);pointer-events:none;}
+.logo-row{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
+.logo-icon{width:52px;height:52px;background:#1aff6e;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:22px;font-weight:700;color:#052b0e;flex-shrink:0;}
+.logo-text{font-size:28px;font-weight:900;color:#1aff6e;letter-spacing:-0.5px;}
+.logo-text span{color:#e8ffe0;font-weight:400;font-size:20px;}
+.tagline{font-size:44px;font-weight:900;line-height:1.1;color:#f0fff0;margin-bottom:16px;letter-spacing:-1px;max-width:600px;}
+.tagline em{font-style:normal;color:#1aff6e;}
+.sub{font-size:17px;color:#7fc98a;margin-bottom:36px;max-width:520px;line-height:1.6;}
+.btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-p{background:#1aff6e;color:#052b0e;border:none;border-radius:10px;padding:14px 28px;font-family:'Exo 2',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:transform .12s,box-shadow .12s;}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 6px 24px #1aff6e44;}
+.btn-g{background:transparent;color:#1aff6e;border:1.5px solid #2a7a38;border-radius:10px;padding:13px 28px;font-family:'Exo 2',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s;}
+.btn-g:hover{border-color:#1aff6e;background:#1aff6e11;}
+.badges{display:flex;flex-wrap:wrap;gap:10px;padding:24px 48px;background:#0c1f0f;border-bottom:1px solid #1e4a22;}
+.badge{display:flex;align-items:center;gap:7px;background:#102714;border:1px solid #2a6030;border-radius:999px;padding:7px 14px;font-size:13px;color:#a0f0a8;font-weight:500;}
+.bdot{width:7px;height:7px;border-radius:50%;background:#1aff6e;flex-shrink:0;}
+.tabs{display:flex;padding:0 48px;overflow-x:auto;scrollbar-width:none;gap:4px;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{background:transparent;border:none;border-bottom:3px solid transparent;color:#5a9462;font-family:'Exo 2',sans-serif;font-size:14px;font-weight:600;padding:18px 20px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap;letter-spacing:0.3px;}
+.tab:hover{color:#a0f0a8;background:#1aff6e0a;}
+.tab.active{color:#1aff6e;border-bottom-color:#1aff6e;background:#1aff6e11;}
+.tbadge{display:inline-block;background:#1aff6e22;border:1px solid #1aff6e55;color:#1aff6e;font-size:10px;font-weight:700;border-radius:999px;padding:1px 7px;margin-left:6px;letter-spacing:0.5px;vertical-align:middle;}
+.page{display:none;}
+.page.active{display:block;}
+.sec{padding:52px 48px;}
+.sec-lbl{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2ec94a;margin-bottom:10px;}
+.sec-title{font-size:30px;font-weight:800;color:#e8ffe0;margin-bottom:32px;letter-spacing:-0.5px;}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:52px;}
+.stat{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:20px 18px;}
+.stat-num{font-family:'Share Tech Mono',monospace;font-size:32px;font-weight:700;color:#1aff6e;line-height:1;margin-bottom:6px;}
+.stat-lbl{font-size:13px;color:#6da878;}
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;}
+.app-card{background:#0e2012;border:1px solid #1e4a22;border-radius:16px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;transition:border-color .15s,transform .15s;cursor:pointer;}
+/* App Modal Themes */
+.modal-theme-gregornotes { --theme-color: #ff8c00; --theme-bg: #1a0f00; }
+.modal-theme-herbertstudio { --theme-color: #008000; --theme-bg: #001a00; }
+.modal-theme-kruschtelconverter { --theme-color: #a020f0; --theme-bg: #14001a; }
+.modal-theme-lottemail { --theme-color: #ffd700; --theme-bg: #1a1a00; }
+.modal-theme-mannimusic { --theme-color: #8b4513; --theme-bg: #1a0d00; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  .gos-root {
-    font-family: 'Exo 2', sans-serif;
-    background: #0a1a0d;
-    color: #e8ffe0;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  .gos-hero {
-    background: linear-gradient(160deg, #0d2b12 0%, #0a1a0d 60%);
-    border-bottom: 1px solid #2a6e30;
-    padding: 64px 48px 56px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .gos-hero::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, #3dff6022 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .gos-logo-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .gos-logo-icon {
-    width: 52px; height: 52px;
-    background: #1aff6e;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 22px;
-    font-weight: 700;
-    color: #052b0e;
-    flex-shrink: 0;
-  }
-
-  .gos-logo-text {
-    font-size: 28px;
-    font-weight: 900;
-    color: #1aff6e;
-    letter-spacing: -0.5px;
-  }
-
-  .gos-logo-text span { color: #e8ffe0; font-weight: 400; font-size: 20px; }
-
-  .gos-tagline {
-    font-size: 44px;
-    font-weight: 900;
-    line-height: 1.1;
-    color: #f0fff0;
-    margin-bottom: 16px;
-    letter-spacing: -1px;
-    max-width: 600px;
-  }
-
-  .gos-tagline em {
-    font-style: normal;
-    color: #1aff6e;
-  }
-
-  .gos-sub {
-    font-size: 17px;
-    color: #7fc98a;
-    margin-bottom: 36px;
-    max-width: 520px;
-    line-height: 1.6;
-  }
-
-  .gos-btns {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .gos-btn-primary {
-    background: #1aff6e;
-    color: #052b0e;
-    border: none;
-    border-radius: 10px;
-    padding: 14px 28px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.12s, box-shadow 0.12s;
-  }
-  .gos-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px #1aff6e44; }
-
-  .gos-btn-ghost {
-    background: transparent;
-    color: #1aff6e;
-    border: 1.5px solid #2a7a38;
-    border-radius: 10px;
-    padding: 13px 28px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .gos-btn-ghost:hover { border-color: #1aff6e; background: #1aff6e11; }
-
-  .gos-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 24px 48px;
-    background: #0c1f0f;
-    border-bottom: 1px solid #1e4a22;
-  }
-
-  .gos-badge {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    background: #102714;
-    border: 1px solid #2a6030;
-    border-radius: 999px;
-    padding: 7px 14px;
-    font-size: 13px;
-    color: #a0f0a8;
-    font-weight: 500;
-  }
-  .gos-badge-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #1aff6e;
-    flex-shrink: 0;
-  }
-
-  .gos-section {
-    padding: 52px 48px;
-  }
-
-  .gos-section-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #2ec94a;
-    margin-bottom: 10px;
-  }
-
-  .gos-section-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #e8ffe0;
-    margin-bottom: 32px;
-    letter-spacing: -0.5px;
-  }
-
-  .gos-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
-    margin-bottom: 52px;
-  }
-
-  .gos-stat {
-    background: #0e2012;
-    border: 1px solid #1e4a22;
-    border-radius: 14px;
-    padding: 20px 18px;
-  }
-  .gos-stat-num {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 32px;
-    font-weight: 700;
-    color: #1aff6e;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .gos-stat-label {
-    font-size: 13px;
-    color: #6da878;
-  }
-
-  .gos-apps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 16px;
-  }
-
-  .gos-app-card {
-    background: #0e2012;
-    border: 1px solid #1e4a22;
-    border-radius: 16px;
-    padding: 20px 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-    transition: border-color 0.15s, transform 0.15s;
-    cursor: default;
-  }
-  .gos-app-card:hover {
-    border-color: #1aff6e;
-    transform: translateY(-3px);
-  }
-
-  .gos-app-icon {
-    width: 56px; height: 56px;
-    border-radius: 14px;
-    background: #163420;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    border: 1px solid #2a6030;
-    overflow: hidden;
-  }
-  .gos-app-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
-
-  .gos-app-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: #d8f5da;
-  }
-
-  .gos-app-desc {
-    font-size: 12px;
-    color: #5a9462;
-    line-height: 1.4;
-  }
-
-  .gos-app-free {
-    font-size: 11px;
-    font-weight: 700;
-    background: #0d2b12;
-    border: 1px solid #1aff6e;
-    color: #1aff6e;
-    border-radius: 999px;
-    padding: 3px 10px;
-    letter-spacing: 0.5px;
-  }
-
-  .gos-divider {
-    height: 1px;
-    background: #1e4a22;
-    margin: 0 48px;
-  }
-
-  .gos-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-  }
-
-  .gos-feature-card {
-    background: #0e2012;
-    border: 1px solid #1e4a22;
-    border-radius: 14px;
-    padding: 20px;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-  }
-
-  .gos-feat-icon {
-    width: 38px; height: 38px;
-    border-radius: 10px;
-    background: #163420;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-    border: 1px solid #2a6030;
-  }
-
-  .gos-feat-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: #d8f5da;
-    margin-bottom: 4px;
-  }
-
-  .gos-feat-desc {
-    font-size: 12px;
-    color: #5a9462;
-    line-height: 1.5;
-  }
-
-  .gos-footer {
-    background: #070f08;
-    border-top: 1px solid #1e4a22;
-    padding: 28px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .gos-footer-logo {
-    font-size: 18px;
-    font-weight: 900;
-    color: #1aff6e;
-    letter-spacing: -0.5px;
-  }
-
-  .gos-footer-copy {
-    font-size: 12px;
-    color: #3a6b40;
-  }
-
-  .gos-tabs {
-    display: flex;
-    gap: 0;
-    background: #0c1f0f;
-    border-bottom: 1px solid #1e4a22;
-    padding: 0 48px;
-    overflow-x: auto;
-  }
-
-  .gos-tab {
-    background: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
-    color: #5a9462;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 14px 20px;
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
-    white-space: nowrap;
-    letter-spacing: 0.3px;
-  }
-  .gos-tab:hover { color: #a0f0a8; }
-  .gos-tab.active {
-    color: #1aff6e;
-    border-bottom-color: #1aff6e;
-  }
-
-  .gos-tab-badge {
-    display: inline-block;
-    background: #1aff6e22;
-    border: 1px solid #1aff6e55;
-    color: #1aff6e;
-    font-size: 10px;
-    font-weight: 700;
-    border-radius: 999px;
-    padding: 1px 7px;
-    margin-left: 7px;
-    letter-spacing: 0.5px;
-    vertical-align: middle;
-  }
-
-  .gos-page { display: none; }
-  .gos-page.active { display: block; }
-
-  .gos-beta-section {
-    padding: 52px 48px;
-    max-width: 580px;
-  }
-
-  .gos-beta-card {
-    background: #0e2012;
-    border: 1px solid #1e4a22;
-    border-radius: 18px;
-    padding: 36px 32px;
-  }
-
-  .gos-beta-title {
-    font-size: 22px;
-    font-weight: 800;
-    color: #e8ffe0;
-    margin-bottom: 8px;
-    letter-spacing: -0.3px;
-  }
-
-  .gos-beta-desc {
-    font-size: 14px;
-    color: #5a9462;
-    line-height: 1.6;
-    margin-bottom: 28px;
-  }
-
-  .gos-input-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #2ec94a;
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  .gos-input {
-    width: 100%;
-    background: #071209;
-    border: 1.5px solid #2a6030;
-    border-radius: 10px;
-    padding: 13px 16px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 15px;
-    color: #e8ffe0;
-    margin-bottom: 24px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .gos-input::placeholder { color: #3a6b40; }
-  .gos-input:focus { border-color: #1aff6e; }
-
-  .gos-checkbox-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    background: #071209;
-    border: 1.5px solid #1e4a22;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    transition: border-color 0.15s;
-  }
-  .gos-checkbox-row:hover { border-color: #2a6e30; }
-  .gos-checkbox-row.checked { border-color: #1aff6e44; background: #071f0b; }
-
-  .gos-checkbox {
-    width: 20px; height: 20px;
-    border-radius: 6px;
-    border: 1.5px solid #2a6e30;
-    background: transparent;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .gos-checkbox-row.checked .gos-checkbox {
-    background: #1aff6e;
-    border-color: #1aff6e;
-  }
-  .gos-checkbox-check {
-    display: none;
-    width: 11px; height: 8px;
-    border-left: 2.5px solid #052b0e;
-    border-bottom: 2.5px solid #052b0e;
-    transform: rotate(-45deg) translateY(-1px);
-  }
-  .gos-checkbox-row.checked .gos-checkbox-check { display: block; }
-
-  .gos-checkbox-text strong {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    color: #d8f5da;
-    margin-bottom: 3px;
-  }
-  .gos-checkbox-text span {
-    font-size: 12px;
-    color: #4a8455;
-    line-height: 1.5;
-  }
-
-  .gos-beta-submit {
-    width: 100%;
-    background: #1aff6e;
-    color: #052b0e;
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: transform 0.12s, box-shadow 0.12s, opacity 0.15s;
-    opacity: 0.4;
-    pointer-events: none;
-  }
-  .gos-beta-submit.ready {
-    opacity: 1;
-    pointer-events: all;
-  }
-  .gos-beta-submit.ready:hover { transform: translateY(-2px); box-shadow: 0 6px 24px #1aff6e44; }
-
-  .gos-beta-success {
-    display: none;
-    text-align: center;
-    padding: 20px 0 4px;
-  }
-  .gos-beta-success-icon {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: #0d2b12;
-    border: 2px solid #1aff6e;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 16px;
-    font-size: 28px;
-  }
-  .gos-beta-success h3 {
-    font-size: 20px;
-    font-weight: 800;
-    color: #1aff6e;
-    margin-bottom: 8px;
-  }
-  .gos-beta-success p {
-    font-size: 14px;
-    color: #5a9462;
-    line-height: 1.6;
-  }
-
-  @media (max-width: 600px) {
-    .gos-hero, .gos-section, .gos-badges, .gos-divider, .gos-footer { padding-left: 20px; padding-right: 20px; }
-    .gos-tagline { font-size: 30px; }
-    .gos-tabs { padding: 0 20px; }
-    .gos-beta-section { padding: 32px 20px; }
-    .gos-beta-card { padding: 24px 20px; }
-  }
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
+  z-index: 2000; display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-content {
+  background: var(--theme-bg, #0e2012); border: 2px solid var(--theme-color, #1aff6e);
+  border-radius: 24px; max-width: 800px; width: 100%; max-height: 90vh;
+  overflow-y: auto; position: relative; padding: 40px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5), 0 0 30px var(--theme-color, transparent);
+}
+.modal-close {
+  position: absolute; top: 20px; right: 20px; font-size: 28px;
+  color: var(--theme-color); cursor: pointer; background: transparent; border: none; font-family: 'Exo 2', sans-serif;
+}
+.modal-header { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; }
+.modal-app-ico { width: 80px; height: 80px; border-radius: 18px; background: rgba(0,0,0,0.3); border: 1px solid var(--theme-color); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+.modal-app-title { font-size: 32px; font-weight: 900; color: var(--theme-color); }
+.modal-section-title { font-size: 14px; font-weight: 700; color: var(--theme-color); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; margin-top: 32px; }
+.modal-desc { font-size: 16px; color: #d8f5da; line-height: 1.6; margin-bottom: 24px; }
+.modal-feature-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.modal-feature { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; display: flex; gap: 12px; align-items: center; }
+.modal-feature-ico { font-size: 20px; color: var(--theme-color); }
+.modal-feature-text { font-size: 14px; color: #a0f0a8; }
+.app-card:hover{border-color:#1aff6e;transform:translateY(-3px);}
+.app-ico{width:56px;height:56px;border-radius:14px;background:#163420;display:flex;align-items:center;justify-content:center;border:1px solid #2a6030;overflow:hidden;}
+.app-ico img{width:100%;height:100%;object-fit:cover;border-radius:14px;}
+.app-ico-fb{font-size:28px;display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
+.app-name{font-size:14px;font-weight:700;color:#d8f5da;}
+.app-desc{font-size:12px;color:#5a9462;line-height:1.4;}
+.app-free{font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;letter-spacing:0.5px;}
+.divider{height:1px;background:#1e4a22;margin:0 48px;}
+.feats{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+.feat{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start;}
+.feat-ico{width:38px;height:38px;border-radius:10px;background:#163420;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:1px solid #2a6030;}
+.feat-name{font-size:14px;font-weight:700;color:#d8f5da;margin-bottom:4px;}
+.feat-desc{font-size:12px;color:#5a9462;line-height:1.5;}
+.footer{background:#070f08;border-top:1px solid #1e4a22;padding:28px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-logo{font-size:18px;font-weight:900;color:#1aff6e;}
+.footer-links{display:flex;gap:24px;}
+.footer-link{font-size:13px;color:#3a6b40;cursor:pointer;transition:color .15s;}
+.footer-link:hover{color:#1aff6e;}
+.footer-copy{font-size:12px;color:#3a6b40;}
+.beta-sec{padding:52px 48px;max-width:600px;}
+.beta-card{background:#0e2012;border:1px solid #1e4a22;border-radius:18px;padding:36px 32px;}
+.beta-title{font-size:22px;font-weight:800;color:#e8ffe0;margin-bottom:8px;}
+.beta-desc{font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:28px;}
+.inp-lbl{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#2ec94a;margin-bottom:8px;display:block;}
+.inp{width:100%;background:#071209;border:1.5px solid #2a6030;border-radius:10px;padding:13px 16px;font-family:'Exo 2',sans-serif;font-size:15px;color:#e8ffe0;margin-bottom:24px;outline:none;transition:border-color .15s;}
+.inp::placeholder{color:#3a6b40;}
+.inp:focus{border-color:#1aff6e;}
+.cb-row{display:flex;align-items:flex-start;gap:14px;background:#071209;border:1px solid #1e4a22;border-radius:12px;padding:16px;margin-bottom:12px;cursor:pointer;transition:border-color .15s;}
+.cb-row:hover{border-color:#2a6e30;}
+.cb-row.checked{border-color:#1aff6e44;background:#071f0b;}
+.cb{width:20px;height:20px;border-radius:6px;border:1.5px solid #2a6e30;background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:background .15s,border-color .15s;}
+.cb-row.checked .cb{background:#1aff6e;border-color:#1aff6e;}
+.cbchk{display:none;width:11px;height:8px;border-left:2.5px solid #052b0e;border-bottom:2.5px solid #052b0e;transform:rotate(-45deg) translateY(-1px);}
+.cb-row.checked .cbchk{display:block;}
+.cb-text strong{display:block;font-size:14px;font-weight:700;color:#d8f5da;margin-bottom:3px;}
+.cb-text span{font-size:12px;color:#4a8455;line-height:1.5;}
+.sub-btn{width:100%;background:#1aff6e;color:#052b0e;border:none;border-radius:10px;padding:15px;font-family:'Exo 2',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:20px;transition:transform .12s,box-shadow .12s,opacity .15s;opacity:0.4;pointer-events:none;}
+.sub-btn.ready{opacity:1;pointer-events:all;}
+.sub-btn.ready:hover{transform:translateY(-2px);box-shadow:0 6px 24px #1aff6e44;}
+.succ{display:none;text-align:center;padding:20px 0 4px;}
+.succ-ico{width:64px;height:64px;border-radius:50%;background:#0d2b12;border:2px solid #1aff6e;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;}
+.succ h3{font-size:20px;font-weight:800;color:#1aff6e;margin-bottom:8px;}
+.succ p{font-size:14px;color:#5a9462;line-height:1.6;}
+.cl-list{display:flex;flex-direction:column;gap:16px;max-width:700px;}
+.cl-item{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:22px 24px;}
+.cl-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.cl-version{font-family:'Share Tech Mono',monospace;font-size:20px;font-weight:700;color:#1aff6e;}
+.cl-date{font-size:13px;color:#4a8455;}
+.cl-tag{font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;letter-spacing:0.5px;}
+.cl-tag.stable{background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;}
+.cl-entries{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.cl-entry{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#a0d8a8;line-height:1.5;}
+.cl-dot{width:6px;height:6px;border-radius:50%;background:#1aff6e;flex-shrink:0;margin-top:6px;}
+.cl-cat{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 7px;border-radius:999px;flex-shrink:0;}
+.cl-cat.fix{background:#102714;color:#5ad870;}
+.cl-cat.new{background:#172e10;color:#7fef90;}
+.cl-cat.perf{background:#0e2b1a;color:#40d4a0;}
+.cl-cat.sec{background:#0a2418;color:#20c080;}
+.rm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.rm-col{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:20px;}
+.rm-col-title{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#2ec94a;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #1e4a22;}
+.rm-items{display:flex;flex-direction:column;gap:10px;}
+.rm-item{background:#071209;border:1px solid #1a3a1a;border-radius:10px;padding:12px 14px;}
+.rm-item-title{font-size:13px;font-weight:700;color:#d8f5da;margin-bottom:4px;}
+.rm-item-desc{font-size:11px;color:#4a8455;line-height:1.4;}
+.rm-pill{display:inline-block;font-size:10px;font-weight:700;border-radius:999px;padding:2px 8px;letter-spacing:0.5px;margin-top:6px;}
+.rm-pill.done{background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;}
+.rm-pill.wip{background:#162808;border:1px solid #7fc940;color:#7fc940;}
+.rm-pill.planned{background:#112010;border:1px solid #4a8455;color:#4a8455;}
+.faq-list{display:flex;flex-direction:column;gap:10px;max-width:760px;}
+.faq-item{background:#0e2012;border:1px solid #1e4a22;border-radius:12px;overflow:hidden;}
+.faq-q{width:100%;background:transparent;border:none;text-align:left;padding:18px 20px;font-family:'Exo 2',sans-serif;font-size:14px;font-weight:700;color:#d8f5da;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.faq-q:hover{background:#071f0b;}
+.faq-arrow{font-size:16px;color:#1aff6e;transition:transform .2s;flex-shrink:0;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-item.open .faq-a{max-height:400px;}
+.faq-a-inner{padding:14px 20px 18px;font-size:13px;color:#5a9462;line-height:1.7;border-top:1px solid #1e4a22;}
+.faq-cat-lbl{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2ec94a;margin:28px 0 12px;}
+.faq-cat-lbl:first-child{margin-top:0;}
+.comm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.comm-card{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:20px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:border-color .15s,transform .15s;cursor:pointer;}
+.comm-card:hover{border-color:#1aff6e;transform:translateY(-3px);}
+.comm-icon{width:52px;height:52px;border-radius:14px;background:#163420;border:1px solid #2a6030;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.comm-name{font-size:14px;font-weight:700;color:#d8f5da;}
+.comm-desc{font-size:12px;color:#5a9462;line-height:1.4;}
+.comm-link{font-size:12px;font-weight:700;color:#1aff6e;margin-top:2px;}
+.sysreq{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;max-width:860px;}
+.sysreq-card{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:20px 22px;}
+.sysreq-card.rec{border-color:#2a6e30;}
+.sysreq-label{font-size:13px;font-weight:700;color:#1aff6e;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.sysreq-row{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid #0e2818;}
+.sysreq-row:last-child{border-bottom:none;}
+.sysreq-k{color:#5a9462;}
+.sysreq-v{color:#d8f5da;font-weight:600;}
+/* DOWNLOAD GUIDE */
+.dl-outer{padding:52px 48px;}
+.dl-progress{display:flex;align-items:center;gap:0;margin-bottom:40px;overflow-x:auto;padding-bottom:4px;}
+.dl-prog-step{display:flex;align-items:center;gap:0;flex-shrink:0;}
+.dl-prog-num{width:36px;height:36px;border-radius:50%;border:2px solid #2a6030;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:14px;font-weight:700;color:#4a8455;background:#071209;transition:all .2s;cursor:pointer;flex-shrink:0;}
+.dl-prog-num.active{border-color:#1aff6e;color:#1aff6e;background:#0d2b12;}
+.dl-prog-num.done{border-color:#1aff6e;color:#052b0e;background:#1aff6e;}
+.dl-prog-label{font-size:12px;font-weight:700;color:#3a6b40;margin-left:8px;white-space:nowrap;transition:color .2s;}
+.dl-prog-label.active{color:#1aff6e;}
+.dl-prog-label.done{color:#5ad870;}
+.dl-prog-line{width:32px;height:2px;background:#1e4a22;margin:0 8px;flex-shrink:0;}
+.dl-prog-line.done{background:#1aff6e;}
+.dl-phase{display:none;}
+.dl-phase.active{display:block;}
+.dl-phase-title{font-size:22px;font-weight:800;color:#e8ffe0;margin-bottom:6px;letter-spacing:-0.3px;}
+.dl-phase-sub{font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;}
+.dl-steps-grid{display:flex;flex-direction:column;gap:0;}
+.dl-step{display:flex;gap:20px;position:relative;padding-bottom:32px;}
+.dl-step:last-child{padding-bottom:0;}
+.dl-step-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.dl-num{width:36px;height:36px;border-radius:50%;background:#163420;border:2px solid #1aff6e;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:14px;font-weight:700;color:#1aff6e;}
+.dl-line{width:2px;background:#1e4a22;flex:1;margin-top:6px;min-height:16px;}
+.dl-step:last-child .dl-line{display:none;}
+.dl-body{padding-top:6px;flex:1;}
+.dl-step-title{font-size:15px;font-weight:700;color:#d8f5da;margin-bottom:8px;}
+.dl-step-desc{font-size:13px;color:#5a9462;line-height:1.7;margin-bottom:10px;}
+.dl-tip{background:#071f0b;border:1px solid #1aff6e33;border-radius:10px;padding:12px 14px;font-size:12px;color:#4a9460;line-height:1.6;margin-top:10px;}
+.dl-tip strong{color:#1aff6e;font-size:12px;}
+.dl-code{background:#040e06;border:1px solid #1e4a22;border-radius:8px;padding:10px 14px;font-family:'Share Tech Mono',monospace;font-size:12px;color:#7fef90;margin-top:10px;overflow-x:auto;white-space:nowrap;}
+.dl-warn{background:#1a0e06;border:1px solid #ff8c3344;border-radius:10px;padding:12px 14px;font-size:12px;color:#d4884a;line-height:1.6;margin-top:10px;}
+.dl-warn strong{color:#ff9955;font-size:12px;}
+.dl-img-mock{background:#040e06;border:1px solid #1e4a22;border-radius:10px;padding:14px 16px;margin-top:12px;font-size:12px;color:#2a6030;font-family:'Share Tech Mono',monospace;line-height:1.8;}
+.dl-nav{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid #1e4a22;}
+.dl-nav-btn{background:transparent;color:#1aff6e;border:1.5px solid #2a7a38;border-radius:10px;padding:12px 24px;font-family:'Exo 2',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:border-color .15s,background .15s;}
+.dl-nav-btn:hover{border-color:#1aff6e;background:#1aff6e11;}
+.dl-nav-btn.primary{background:#1aff6e;color:#052b0e;border-color:#1aff6e;}
+.dl-nav-btn.primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px #1aff6e33;}
+.dl-nav-btn:disabled{opacity:0.3;pointer-events:none;}
+.dl-phase-badge{display:inline-block;font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e55;color:#1aff6e;border-radius:999px;padding:4px 12px;margin-bottom:14px;letter-spacing:0.5px;}
+/* VERGLEICH */
+.compare-table{width:100%;border-collapse:collapse;max-width:800px;}
+.compare-table th{background:#0c2010;border:1px solid #1e4a22;padding:12px 16px;font-size:13px;font-weight:700;color:#1aff6e;text-align:left;}
+.compare-table td{border:1px solid #1a3a1a;padding:12px 16px;font-size:13px;color:#a0d8a8;vertical-align:top;}
+.compare-table tr:hover td{background:#071f0b;}
+.compare-table td.good{color:#1aff6e;font-weight:700;}
+.compare-table td.bad{color:#7a4a30;}
+.compare-table td.mid{color:#8aaa70;}
+/* HARDWARE LIST */
+.hw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.hw-card{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:20px;display:flex;gap:16px;align-items:center;}
+.hw-ico{width:44px;height:44px;background:#163420;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;border:1px solid #2a6030;}
+.hw-info{flex:1;}
+.hw-name{font-size:14px;font-weight:700;color:#d8f5da;margin-bottom:2px;}
+.hw-status{font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px;}
+.hw-status.ok{color:#1aff6e;}
+.hw-status.warn{color:#ff9955;}
+.hw-dot{width:6px;height:6px;border-radius:50%;}
+.hw-status.ok .hw-dot{background:#1aff6e;}
+.hw-status.warn .hw-dot{background:#ff9955;}
+/* SUPPORT SECTION */
+.sup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+.sup-card{background:#0e2012;border:1px solid #1e4a22;border-radius:16px;padding:28px;}
+.sup-title{font-size:18px;font-weight:800;color:#e8ffe0;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.sup-desc{font-size:13px;color:#5a9462;line-height:1.6;margin-bottom:20px;}
+.sup-btn{display:inline-flex;align-items:center;gap:8px;background:#1aff6e;color:#052b0e;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:700;transition:transform .12s;}
+.sup-btn:hover{transform:translateY(-2px);}
+/* GAMING SECTION */
+.gaming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
+.game-card{background:#0e2012;border:1px solid #1e4a22;border-radius:14px;padding:20px;text-align:center;}
+.game-ico{font-size:32px;margin-bottom:12px;}
+.game-name{font-size:15px;font-weight:700;color:#d8f5da;margin-bottom:6px;}
+.game-status{font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;}
+.bench-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:24px;}
+.bench-card{background:#071209;border:1px solid #2a6030;border-radius:12px;padding:16px;}
+.bench-val{font-family:'Share Tech Mono',monospace;font-size:24px;color:#1aff6e;margin-bottom:4px;}
+.bench-lbl{font-size:12px;color:#5a9462;}
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.gal-item{background:#0e2012;border:1px solid #1e4a22;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s;}
+.gal-item:hover{transform:scale(1.02);}
+.gal-img{width:100%;height:180px;background:#071209;display:flex;align-items:center;justify-content:center;color:#2a6030;font-size:40px;}
+.gal-desc{padding:14px;font-size:13px;color:#d8f5da;font-weight:600;}
+/* NEWS TICKER */
+.ticker-wrap{background:#071209;border-bottom:1px solid #1e4a22;padding:8px 48px;overflow:hidden;white-space:nowrap;}
+.ticker{display:inline-block;animation:ticker 30s linear infinite;color:#1aff6e;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+@keyframes ticker{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px #1aff6e22, 0 0 10px #1aff6e22; }
+  50% { box-shadow: 0 0 20px #1aff6e44, 0 0 30px #1aff6e44; }
+}
+.hof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+.hof-card { 
+  background: linear-gradient(145deg, #0e2012, #071209); 
+  border: 1px solid #1e4a22; 
+  border-radius: 24px; 
+  padding: 30px; 
+  text-align: center; 
+  transition: transform 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.hof-card:hover { transform: translateY(-10px); border-color: #1aff6e; }
+.hof-card.admin { border: 2px solid #1aff6e; animation: glow 3s infinite; }
+.hof-avatar { 
+  width: 100px; height: 100px; 
+  background: #163420; 
+  border-radius: 50%; 
+  margin: 0 auto 20px; 
+  display: flex; align-items: center; justify-content: center; 
+  font-size: 50px; 
+  border: 3px solid #1e4a22;
+}
+.hof-card.admin .hof-avatar { border-color: #1aff6e; }
+.hof-name { font-size: 20px; font-weight: 800; color: #d8f5da; margin-bottom: 5px; }
+.hof-role { font-size: 13px; font-weight: 700; color: #1aff6e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.hof-desc { font-size: 14px; color: #5a9462; line-height: 1.5; }
+.hof-badge {
+  position: absolute; top: 15px; right: 15px;
+  background: #1aff6e; color: #052b0e;
+  font-size: 10px; font-weight: 900;
+  padding: 4px 10px; border-radius: 99px;
+  text-transform: uppercase;
+}
+@keyframes popIn {
+   0% { transform: scale(0.8); opacity: 0; }
+   100% { transform: scale(1); opacity: 1; }
+ }
+ @keyframes shake {
+   0%, 100% { transform: translate(0, 0); }
+   10%, 30%, 50%, 70%, 90% { transform: translate(-10px, 0); }
+   20%, 40%, 60%, 80% { transform: translate(10px, 0); }
+ }
+ .ticker span{margin-right:50px;}
+ .angry-overlay {
+   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+   background: rgba(50, 0, 0, 0.95); z-index: 5000; display: none; align-items: center; justify-content: center;
+   padding: 20px; font-family: 'Share Tech Mono', monospace;
+ }
+ .angry-card {
+   background: #1a0000; border: 5px solid #ff0000; border-radius: 10px;
+   max-width: 600px; width: 100%; padding: 40px; text-align: left; color: #ff0000;
+   animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+   box-shadow: 0 0 50px #ff0000;
+ }
+ .angry-title { font-size: 32px; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; border-bottom: 3px solid #ff0000; padding-bottom: 10px; }
+ .angry-text { font-size: 18px; line-height: 1.4; margin-bottom: 30px; color: #ff6666; }
+ .angry-footer { font-size: 14px; color: #990000; text-align: right; }
+ .angry-btn { background: #ff0000; color: #000; border: none; padding: 15px 30px; font-weight: 900; cursor: pointer; text-transform: uppercase; width: 100%; }
+ .angry-btn:hover { background: #fff; color: #ff0000; }
+ .sad-overlay {
+   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+   background: rgba(0, 20, 50, 0.95); z-index: 5000; display: none; align-items: center; justify-content: center;
+   padding: 20px; font-family: 'Share Tech Mono', monospace;
+ }
+ .sad-card {
+   background: #000a1a; border: 5px solid #00a2ff; border-radius: 10px;
+   max-width: 600px; width: 100%; padding: 40px; text-align: left; color: #00a2ff;
+   animation: popIn 0.5s ease-out;
+   box-shadow: 0 0 50px #00a2ff;
+ }
+ .sad-title { font-size: 32px; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; border-bottom: 3px solid #00a2ff; padding-bottom: 10px; }
+ .sad-text { font-size: 18px; line-height: 1.4; margin-bottom: 30px; color: #80d1ff; }
+ .sad-footer { font-size: 14px; color: #004c7a; text-align: right; }
+ .sad-btn { background: #00a2ff; color: #000; border: none; padding: 15px 30px; font-weight: 900; cursor: pointer; text-transform: uppercase; width: 100%; }
+ .sad-btn:hover { background: #fff; color: #00a2ff; }
+ .happy-overlay {
+   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+   background: rgba(0, 50, 20, 0.95); z-index: 5000; display: none; align-items: center; justify-content: center;
+   padding: 20px; font-family: 'Share Tech Mono', monospace;
+ }
+ .happy-card {
+   background: #001a0a; border: 5px solid #1aff6e; border-radius: 10px;
+   max-width: 600px; width: 100%; padding: 40px; text-align: left; color: #1aff6e;
+   animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   box-shadow: 0 0 50px #1aff6e;
+ }
+ .happy-title { font-size: 32px; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; border-bottom: 3px solid #1aff6e; padding-bottom: 10px; }
+ .happy-text { font-size: 18px; line-height: 1.4; margin-bottom: 30px; color: #a0f0a8; }
+ .happy-footer { font-size: 14px; color: #2a6030; text-align: right; }
+ .happy-btn { background: #1aff6e; color: #000; border: none; padding: 15px 30px; font-weight: 900; cursor: pointer; text-transform: uppercase; width: 100%; }
+ .happy-btn:hover { background: #fff; color: #1aff6e; }
+ .chill-overlay {
+   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+   background: radial-gradient(circle at center, #0a1a0d 0%, #000 100%);
+   z-index: 5000; display: none; align-items: center; justify-content: center;
+   padding: 20px; font-family: 'Exo 2', sans-serif;
+ }
+ .chill-card {
+   background: rgba(14, 32, 18, 0.8); border: 1px solid #1aff6e33; border-radius: 30px;
+   max-width: 700px; width: 100%; padding: 50px; text-align: left; color: #d8f5da;
+   backdrop-filter: blur(20px);
+   box-shadow: 0 0 100px rgba(26, 255, 110, 0.1);
+ }
+ .chill-title { font-size: 28px; font-weight: 300; margin-bottom: 30px; color: #1aff6e; letter-spacing: 2px; text-transform: uppercase; }
+ .chill-text { font-size: 17px; line-height: 1.8; margin-bottom: 40px; color: #a0f0a8; font-weight: 300; }
+ .chill-footer { font-size: 14px; color: #5a9462; font-style: italic; border-top: 1px solid #1aff6e22; padding-top: 20px; }
+ .chill-btn { background: transparent; color: #1aff6e; border: 1px solid #1aff6e; padding: 12px 30px; border-radius: 99px; cursor: pointer; transition: all 0.3s; }
+ .chill-btn:hover { background: #1aff6e; color: #000; }
+ .cheer-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1aff6e;
+  color: #052b0e;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(26, 255, 110, 0.4);
+  z-index: 1001;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cheer-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 25px rgba(26, 255, 110, 0.6);
+}
+.cheer-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 2100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cheer-card {
+  background: #0e2012;
+  border: 2px solid #1aff6e;
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 40px rgba(26, 255, 110, 0.2);
+}
+.cheer-emoji {
+  font-size: 64px;
+  margin-bottom: 24px;
+  display: block;
+}
+.cheer-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e8ffe0;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+.cheer-close {
+  background: #1aff6e;
+  color: #052b0e;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s;
+}
+.cheer-close:hover {
+  transform: translateY(-2px);
+}
+.secret-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+  z-index: 3000; display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.secret-email {
+  background: #fdfdfd; border-radius: 8px; max-width: 700px; width: 100%;
+  max-height: 90vh; overflow-y: auto; color: #333; font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5); position: relative;
+}
+.email-header { background: #f2f2f2; padding: 20px; border-bottom: 1px solid #ddd; border-radius: 8px 8px 0 0; }
+.email-row { margin-bottom: 8px; font-size: 14px; color: #666; }
+.email-row strong { color: #333; width: 60px; display: inline-block; }
+.email-body { padding: 40px; line-height: 1.6; font-size: 15px; }
+.email-body h1 { font-size: 22px; color: #052b0e; margin-bottom: 24px; border-bottom: 2px solid #1aff6e; padding-bottom: 10px; }
+.reason-list { list-style: none; padding: 0; margin: 20px 0; }
+.reason-item { margin-bottom: 16px; padding-left: 30px; position: relative; }
+.reason-item::before { content: '✓'; position: absolute; left: 0; color: #2a7a38; font-weight: bold; }
+.email-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-style: italic; color: #888; }
+.secret-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; border: none; background: none; }
+.secret-close:hover { color: #333; }
+ .tutorial-overlay {
+   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+   background: rgba(0,0,0,0.98); z-index: 4000; display: none; align-items: center; justify-content: center;
+   padding: 20px; font-family: 'Exo 2', sans-serif;
+ }
+ .tutorial-card {
+   background: #0e2012; border: 3px solid #ff3333; border-radius: 20px;
+   max-width: 600px; width: 100%; padding: 40px; text-align: center; color: #e8ffe0;
+ }
+ .tut-step-num { font-size: 12px; color: #ff3333; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+ .tut-title { font-size: 24px; font-weight: 800; margin-bottom: 20px; color: #1aff6e; }
+ .tut-desc { font-size: 16px; line-height: 1.6; margin-bottom: 30px; min-height: 100px; }
+ .tut-nav { display: flex; justify-content: space-between; align-items: center; }
+ .tut-btn { background: #ff3333; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; }
+ .tut-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+ .tut-progress { font-size: 13px; color: #5a9462; }
+  @media(max-width:640px){.hero,.sec,.badges,.divider,.footer,.dl-outer{padding-left:20px;padding-right:20px;}.tagline{font-size:30px;}.tabs{padding:0 20px;}.beta-sec{padding:32px 20px;}.beta-card{padding:24px 20px;}.footer-links{display:none;}.dl-prog-label{display:none;}.dl-prog-line{width:16px;}.ticker-wrap{padding:8px 20px;}}
 </style>
 
-<div class="gos-root">
-
-  <div style="background:#071209;border-bottom:2px solid #1aff6e33;padding:0;min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;position:fixed;top:0;left:0;width:100%;z-index:9999;">
-    <div style="background:#0e2012;border:1px solid #2a6e30;border-radius:20px;padding:52px 48px;max-width:480px;margin:20px;">
-      <div style="width:64px;height:64px;background:#0d2b12;border:2px solid #1aff6e44;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:'Share Tech Mono',monospace;font-size:26px;font-weight:700;color:#1aff6e;">G</div>
-      <div style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2ec94a;margin-bottom:12px;">Status</div>
-      <div style="font-size:28px;font-weight:900;color:#f0fff0;letter-spacing:-0.5px;line-height:1.2;margin-bottom:16px;">Website gerade geschlossen, sorry!</div>
-      <div style="font-size:16px;color:#7fc98a;line-height:1.6;">GregorOS ist bald wieder da!</div>
+<div class="gr">
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>GregorOS v3.0.2 ist jetzt verfügbar!</span>
+    <span>Neu: Support für NVIDIA RTX 40er Serie</span>
+    <span>Über 12.000 aktive Nutzer weltweit</span>
+    <span>ManniMusic v2.1 mit neuem Equalizer erschienen</span>
+    <span>GregorBrowser Beta startet im Juni 2026</span>
+  </div>
+</div>
+<div class="hero">
+  <div class="logo-row">
+    <div class="logo-icon">G</div>
+    <div class="logo-text">GregorOS <span>v3.0</span></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;background:#0d2b12;border:1px solid #1aff6e44;padding:6px 12px;border-radius:999px;">
+      <div style="width:8px;height:8px;background:#1aff6e;border-radius:50%;box-shadow:0 0 10px #1aff6e;"></div>
+      <span style="font-size:11px;font-weight:700;color:#1aff6e;letter-spacing:0.5px;text-transform:uppercase;">System Status: Operational</span>
     </div>
   </div>
-
-  <div class="gos-hero">
-    <div class="gos-logo-row">
-      <div class="gos-logo-icon">G</div>
-      <div class="gos-logo-text">GregorOS <span>v3.0</span></div>
-    </div>
-    <div class="gos-tagline">Das <em>schnellste</em> und sicherste Betriebssystem</div>
-    <div class="gos-sub">Blitzschnell. Bloatware-frei. Für alle. GregorOS läuft auf jedem Gerät – mit nur 500 MB RAM-Verbrauch.</div>
-    <div class="gos-btns">
-      <button class="gos-btn-primary">Jetzt kostenlos herunterladen</button>
-      <button class="gos-btn-ghost">Mehr erfahren</button>
-    </div>
+  <div class="tagline">Das <em>schnellste</em> und sicherste Betriebssystem</div>
+  <div class="sub">Blitzschnell. Bloatware-frei. Für alle. GregorOS läuft auf jedem Gerät – mit nur 500 MB RAM-Verbrauch.</div>
+  <div class="btns">
+    <button class="btn-p" onclick="switchTab('download',document.getElementById('tab-download'))">Jetzt kostenlos herunterladen</button>
+    <button class="btn-g" onclick="switchTab('main',document.getElementById('tab-main'))">Mehr erfahren</button>
   </div>
+</div>
 
-  <div class="gos-badges">
-    <div class="gos-badge"><div class="gos-badge-dot"></div>Nur 500 MB RAM</div>
-    <div class="gos-badge"><div class="gos-badge-dot"></div>0 Bloatware</div>
-    <div class="gos-badge"><div class="gos-badge-dot"></div>Kompatibel mit allen Games & Programmen</div>
-    <div class="gos-badge"><div class="gos-badge-dot"></div>Gregor Sicherheitsupdates</div>
-    <div class="gos-badge"><div class="gos-badge-dot"></div>100% kostenlos</div>
+<div class="badges">
+  <div class="badge"><div class="bdot"></div>Nur 500 MB RAM</div>
+  <div class="badge"><div class="bdot"></div>0 Bloatware</div>
+  <div class="badge"><div class="bdot"></div>Kompatibel mit allen Games &amp; Programmen</div>
+  <div class="badge"><div class="bdot"></div>Gregor Sicherheitsupdates</div>
+  <div class="badge"><div class="bdot"></div>100% kostenlos</div>
+</div>
+
+<div class="nav-sticky">
+<div style="display:flex;align-items:center;padding-right:48px;">
+<div class="tabs" style="flex:1;">
+  <button class="tab active" id="tab-main" onclick="switchTab('main',this)">Übersicht</button>
+  <button class="tab" id="tab-social" onclick="switchTab('social',this)">Für Alle <span class="tbadge">NEU</span></button>
+  <button class="tab" id="tab-hof" onclick="switchTab('hof',this)">Hall of Fame <span class="tbadge">👑</span></button>
+  <button class="tab" id="tab-fun" onclick="switchTab('fun',this)">Fun mit Gregor <span class="tbadge">🎉</span></button>
+  <button class="tab" id="tab-download" onclick="switchTab('download',this)">Download</button>
+  <button class="tab" id="tab-gaming" onclick="switchTab('gaming',this)">Gaming <span class="tbadge">TOP</span></button>
+  <button class="tab" id="tab-screenshots" onclick="switchTab('screenshots',this)">Screenshots</button>
+  <button class="tab" id="tab-hardware" onclick="switchTab('hardware',this)">Hardware</button>
+  <button class="tab" id="tab-security" onclick="switchTab('security',this)">Sicherheit</button>
+  <button class="tab" id="tab-beta" onclick="switchTab('beta',this)">Beta Test <span class="tbadge">NEU</span></button>
+  <button class="tab" id="tab-preview" onclick="switchTab('preview',this)">Preview Updates <span class="tbadge">GRATIS</span></button>
+  <button class="tab" id="tab-changelog" onclick="switchTab('changelog',this)">Changelog</button>
+  <button class="tab" id="tab-roadmap" onclick="switchTab('roadmap',this)">Roadmap</button>
+  <button class="tab" id="tab-vergleich" onclick="switchTab('vergleich',this)">Vergleich <span class="tbadge">NEU</span></button>
+  <button class="tab" id="tab-faq" onclick="switchTab('faq',this)">FAQ</button>
+  <button class="tab" id="tab-community" onclick="switchTab('community',this)">Community</button>
+  <button class="tab" id="tab-support" onclick="switchTab('support',this)">Support</button>
+ </div>
+ <div style="display:flex;align-items:center;gap:10px;background:#071209;border:1px solid #2a6030;padding:6px 12px;border-radius:8px;width:200px;flex-shrink:0;margin-left:20px;">
+   <span style="font-size:14px;opacity:0.5;">🔍</span>
+   <input type="text" placeholder="Suche..." style="background:transparent;border:none;color:#e8ffe0;font-family:'Exo 2',sans-serif;font-size:13px;width:100%;outline:none;">
+ </div>
+</div>
+</div>
+
+<!-- ÜBERSICHT -->
+<div id="page-main" class="page active">
+<div class="sec">
+  <div class="sec-lbl">Statistiken</div>
+  <div class="sec-title">Zahlen, die für sich sprechen</div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">500MB</div><div class="stat-lbl">RAM-Verbrauch</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-lbl">Bloatware</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">Inklusive Apps</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Game-kompatibel</div></div>
+    <div class="stat"><div class="stat-num">4.9★</div><div class="stat-lbl">Nutzerbewertung</div></div>
+    <div class="stat"><div class="stat-num">12k+</div><div class="stat-lbl">Aktive Nutzer</div></div>
+    <div class="stat"><div class="stat-num" id="dl-count">14,203</div><div class="stat-lbl">Downloads heute</div></div>
   </div>
-
-  <div class="gos-tabs">
-    <button class="gos-tab active" onclick="switchTab('main', this)">Übersicht</button>
-    <button class="gos-tab" onclick="switchTab('beta', this)">Beta Test <span class="gos-tab-badge">NEU</span></button>
-    <button class="gos-tab" onclick="switchTab('preview', this)">Preview Updates <span class="gos-tab-badge">GRATIS</span></button>
+  <div class="sec-lbl">Vorinstallierte Apps</div>
+  <div class="sec-title">Alles dabei – gratis</div>
+  <div class="apps">
+    <div class="app-card" onclick="showAppDetail('gregornotes')"><div class="app-ico"><img src="TextEditorIcon.png" alt="GregorNotes" onerror="this.outerHTML='<span class=app-ico-fb>📝</span>'"></div><div class="app-name">GregorNotes</div><div class="app-desc">Schneller, leichter Texteditor für alle deine Notizen</div><div class="app-free">GRATIS</div></div>
+    <div class="app-card" onclick="showAppDetail('herbertstudio')"><div class="app-ico"><img src="ImageEditorIcon.png" alt="HerbertStudio" onerror="this.outerHTML='<span class=app-ico-fb>🎨</span>'"></div><div class="app-name">HerbertStudio</div><div class="app-desc">Professioneller Bildeditor direkt im System</div><div class="app-free">GRATIS</div></div>
+    <div class="app-card" onclick="showAppDetail('kruschtelconverter')"><div class="app-ico"><img src="KruschtelConverter.png" alt="KruschtelConverter" onerror="this.outerHTML='<span class=app-ico-fb>🔄</span>'"></div><div class="app-name">KruschtelConverter</div><div class="app-desc">Konvertiere Dateien aller Art mit einem Klick</div><div class="app-free">GRATIS</div></div>
+    <div class="app-card" onclick="showAppDetail('lottemail')"><div class="app-ico"><img src="lottemailIcon.png" alt="Lotte Mail" onerror="this.outerHTML='<span class=app-ico-fb>✉️</span>'"></div><div class="app-name">Lotte Mail</div><div class="app-desc">Elegantes E-Mail-Programm für deinen Alltag</div><div class="app-free">GRATIS</div></div>
+    <div class="app-card" onclick="showAppDetail('mannimusic')"><div class="app-ico"><img src="mannimusicicon.png" alt="ManniMusic" onerror="this.outerHTML='<span class=app-ico-fb>🎵</span>'"></div><div class="app-name">ManniMusic</div><div class="app-desc">Musik abspielen, verwalten und genießen</div><div class="app-free">GRATIS</div></div>
   </div>
+</div>
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-lbl">Features</div>
+  <div class="sec-title">Warum GregorOS?</div>
+  <div class="feats">
+    <div class="feat"><div class="feat-ico">⚡</div><div><div class="feat-name">Ultraleicht</div><div class="feat-desc">Nur 500 MB RAM – läuft flüssig auf alten und neuen Geräten</div></div></div>
+    <div class="feat"><div class="feat-ico">🛡️</div><div><div class="feat-name">Gregor Sicherheitsupdates</div><div class="feat-desc">Regelmäßige Updates halten dein System immer sicher und aktuell</div></div></div>
+    <div class="feat"><div class="feat-ico">🎮</div><div><div class="feat-name">Volle Kompatibilität</div><div class="feat-desc">Alle Games und Programme laufen ohne Probleme auf GregorOS</div></div></div>
+    <div class="feat"><div class="feat-ico">🚫</div><div><div class="feat-name">Kein Bloatware</div><div class="feat-desc">Keine unnötige Software, keine Werbe-Apps – nur was du brauchst</div></div></div>
+    <div class="feat"><div class="feat-ico">💸</div><div><div class="feat-name">Komplett kostenlos</div><div class="feat-desc">GregorOS und alle vorinstallierten Apps sind für immer gratis</div></div></div>
+    <div class="feat"><div class="feat-ico">🌿</div><div><div class="feat-name">Frisches Design</div><div class="feat-desc">Modernes, cleanes grünes Interface – angenehm für die Augen</div></div></div>
+    <div class="feat"><div class="feat-ico">🔒</div><div><div class="feat-name">Privacy First</div><div class="feat-desc">Keine Telemetrie, keine Datensammlung – deine Daten bleiben deine Daten</div></div></div>
+    <div class="feat"><div class="feat-ico">🖥️</div><div><div class="feat-name">Multi-Monitor</div><div class="feat-desc">Native Unterstützung für bis zu 4 Bildschirme gleichzeitig</div></div></div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-lbl">Systemanforderungen</div>
+  <div class="sec-title">Läuft auf fast allem</div>
+  <div class="sysreq">
+    <div class="sysreq-card"><div class="sysreq-label">Minimum</div><div class="sysreq-row"><span class="sysreq-k">CPU</span><span class="sysreq-v">Dual-Core 1.5 GHz</span></div><div class="sysreq-row"><span class="sysreq-k">RAM</span><span class="sysreq-v">512 MB</span></div><div class="sysreq-row"><span class="sysreq-k">Speicher</span><span class="sysreq-v">8 GB</span></div><div class="sysreq-row"><span class="sysreq-k">Grafik</span><span class="sysreq-v">128 MB VRAM</span></div><div class="sysreq-row"><span class="sysreq-k">Architektur</span><span class="sysreq-v">x86_64</span></div></div>
+    <div class="sysreq-card rec"><div class="sysreq-label">Empfohlen</div><div class="sysreq-row"><span class="sysreq-k">CPU</span><span class="sysreq-v">Quad-Core 2.5 GHz</span></div><div class="sysreq-row"><span class="sysreq-k">RAM</span><span class="sysreq-v">2 GB</span></div><div class="sysreq-row"><span class="sysreq-k">Speicher</span><span class="sysreq-v">16 GB</span></div><div class="sysreq-row"><span class="sysreq-k">Grafik</span><span class="sysreq-v">512 MB VRAM</span></div><div class="sysreq-row"><span class="sysreq-k">Architektur</span><span class="sysreq-v">x86_64 / ARM64</span></div></div>
+  </div>
+</div>
+</div>
 
-  <div id="page-main" class="gos-page active">
-  <div class="gos-section">
-    <div class="gos-section-label">Statistiken</div>
-    <div class="gos-section-title">Zahlen, die für sich sprechen</div>
-    <div class="gos-stats">
-      <div class="gos-stat">
-        <div class="gos-stat-num">500MB</div>
-        <div class="gos-stat-label">RAM-Verbrauch</div>
-      </div>
-      <div class="gos-stat">
-        <div class="gos-stat-num">0</div>
-        <div class="gos-stat-label">Bloatware</div>
-      </div>
-      <div class="gos-stat">
-        <div class="gos-stat-num">5</div>
-        <div class="gos-stat-label">Inklusive Apps</div>
-      </div>
-      <div class="gos-stat">
-        <div class="gos-stat-num">100%</div>
-        <div class="gos-stat-label">Game-kompatibel</div>
+<!-- FÜR ALLE -->
+<div id="page-social" class="page">
+<div class="sec">
+  <div class="sec-lbl">Warum wir das machen</div>
+  <div class="sec-title">Gregor versteht dich</div>
+  <div style="font-size:16px;color:#d8f5da;line-height:1.8;max-width:800px;margin-bottom:32px;">
+    Nicht jeder hat das Glück, viel Geld zur Verfügung zu haben. Gregor weiß das und möchte, dass Technologie keine Barriere darstellt. 
+    Egal ob für die Schule, das Studium oder den Beruf – jeder verdient Zugang zu den besten Werkzeugen.
+  </div>
+  
+  <div class="sup-grid">
+    <div class="sup-card">
+      <div class="sup-title"><span>🤝</span> Volles Verständnis</div>
+      <div class="sup-desc">
+        Finanzielle Sorgen sollten dich nicht daran hindern, digital voll durchzustarten. GregorOS ist von Grund auf so konzipiert, 
+        dass es auf günstiger Hardware perfekt läuft und keine versteckten Kosten verursacht.
       </div>
     </div>
-
-    <div class="gos-section-label">Vorinstallierte Apps</div>
-    <div class="gos-section-title">Alles dabei – gratis</div>
-    <div class="gos-apps-grid">
-
-      <div class="gos-app-card">
-        <div class="gos-app-icon">
-          <img src="TextEditorIcon.png" alt="GregorNotes" onerror="this.style.display='none';this.parentElement.textContent='📝'">
-        </div>
-        <div class="gos-app-name">GregorNotes</div>
-        <div class="gos-app-desc">Schneller, leichter Texteditor für alle deine Notizen</div>
-        <div class="gos-app-free">GRATIS</div>
+    <div class="sup-card">
+      <div class="sup-title"><span>💻</span> Office für Alle</div>
+      <div class="sup-desc">
+        Word und Excel sind der Standard für Dokumente und Tabellen. Damit du keine teuren Abos abschließen musst, 
+        bietet Gregor diese Programme völlig kostenlos an. Ein kleiner Beitrag, um dir den Alltag zu erleichtern.
       </div>
-
-      <div class="gos-app-card">
-        <div class="gos-app-icon">
-          <img src="ImageEditorIcon.png" alt="HerbertStudio" onerror="this.style.display='none';this.parentElement.textContent='🎨'">
-        </div>
-        <div class="gos-app-name">HerbertStudio</div>
-        <div class="gos-app-desc">Professioneller Bildeditor direkt im System</div>
-        <div class="gos-app-free">GRATIS</div>
-      </div>
-
-      <div class="gos-app-card">
-        <div class="gos-app-icon">
-          <img src="KruschtelConverter.png" alt="KruschtelConverter" onerror="this.style.display='none';this.parentElement.textContent='🔄'">
-        </div>
-        <div class="gos-app-name">KruschtelConverter</div>
-        <div class="gos-app-desc">Konvertiere Dateien aller Art mit einem Klick</div>
-        <div class="gos-app-free">GRATIS</div>
-      </div>
-
-      <div class="gos-app-card">
-        <div class="gos-app-icon">
-          <img src="lottemailIcon.png" alt="Lotte Mail" onerror="this.style.display='none';this.parentElement.textContent='✉️'">
-        </div>
-        <div class="gos-app-name">Lotte Mail</div>
-        <div class="gos-app-desc">Elegantes E-Mail-Programm für deinen Alltag</div>
-        <div class="gos-app-free">GRATIS</div>
-      </div>
-
-      <div class="gos-app-card">
-        <div class="gos-app-icon">
-          <img src="mannimusicicon.png" alt="ManniMusic" onerror="this.style.display='none';this.parentElement.textContent='🎵'">
-        </div>
-        <div class="gos-app-name">ManniMusic</div>
-        <div class="gos-app-desc">Musik abspielen, verwalten und genießen</div>
-        <div class="gos-app-free">GRATIS</div>
-      </div>
-
     </div>
-  </div>
-
-  <div class="gos-divider"></div>
-
-  <div class="gos-section">
-    <div class="gos-section-label">Features</div>
-    <div class="gos-section-title">Warum GregorOS?</div>
-    <div class="gos-features">
-
-      <div class="gos-feature-card">
-        <div class="gos-feat-icon">⚡</div>
-        <div>
-          <div class="gos-feat-name">Ultraleicht</div>
-          <div class="gos-feat-desc">Nur 500 MB RAM – läuft flüssig auf alten und neuen Geräten</div>
-        </div>
+    <div class="sup-card">
+      <div class="sup-title"><span>🌱</span> Bildungschancen</div>
+      <div class="sup-desc">
+        Wir glauben, dass Bildung der Schlüssel zu einer besseren Zukunft ist. GregorOS bietet alle notwendigen Tools für Schüler 
+        und Studenten, damit der Lernerfolg nicht vom Geldbeutel abhängt.
       </div>
-
-      <div class="gos-feature-card">
-        <div class="gos-feat-icon">🛡️</div>
-        <div>
-          <div class="gos-feat-name">Gregor Sicherheitsupdates</div>
-          <div class="gos-feat-desc">Regelmäßige Updates halten dein System immer sicher und aktuell</div>
-        </div>
-      </div>
-
-      <div class="gos-feature-card">
-        <div class="gos-feat-icon">🎮</div>
-        <div>
-          <div class="gos-feat-name">Volle Kompatibilität</div>
-          <div class="gos-feat-desc">Alle Games und Programme laufen ohne Probleme auf GregorOS</div>
-        </div>
-      </div>
-
-      <div class="gos-feature-card">
-        <div class="gos-feat-icon">🚫</div>
-        <div>
-          <div class="gos-feat-name">Kein Bloatware</div>
-          <div class="gos-feat-desc">Keine unnötige Software, keine Werbe-Apps – nur was du brauchst</div>
-        </div>
-      </div>
-
-      <div class="gos-feature-card">
-        <div class="gos-feat-icon">💸</div>
-        <div>
-          <div class="gos-feat-name">Komplett kostenlos</div>
-          <div class="gos-feat-desc">GregorOS und alle vorinstallierten Apps sind für immer gratis</div>
-        </div>
-      </div>
-
-      <div class="gos-feature-card">
-        <div class="gos-feat-icon">🌿</div>
-        <div>
-          <div class="gos-feat-name">Frisches Design</div>
-          <div class="gos-feat-desc">Modernes, cleanes grünes Interface – angenehm für die Augen</div>
-        </div>
-      </div>
-
     </div>
-  </div>
-  </div><!-- end page-main -->
-
-  <div id="page-beta" class="gos-page">
-    <div class="gos-beta-section">
-      <div class="gos-section-label">Beta Programm</div>
-      <div class="gos-section-title" style="margin-bottom: 8px;">Werde Beta-Tester</div>
-      <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;">Hilf uns, GregorOS zu verbessern. Als Beta-Tester läufst du GregorOS im Dual Boot neben deinem aktuellen System – einfach und sicher.</div>
-
-      <div class="gos-beta-card">
-        <div id="beta-form">
-          <div class="gos-beta-title">Jetzt anmelden</div>
-          <div class="gos-beta-desc">Füll das Formular aus und stimme den Beta-Bedingungen zu, um loszulegen.</div>
-
-          <label class="gos-input-label" for="beta-name">Dein Vorname</label>
-          <input class="gos-input" id="beta-name" type="text" placeholder="z.B. Gregor" maxlength="40" oninput="checkForm()" />
-
-          <label class="gos-input-label" style="margin-bottom:12px;">Beta-Bedingungen</label>
-
-          <div class="gos-checkbox-row" id="cb1-row" onclick="toggleCheck('cb1-row', 'cb1')">
-            <div class="gos-checkbox" id="cb1"><div class="gos-checkbox-check"></div></div>
-            <div class="gos-checkbox-text">
-              <strong>Dual Boot einrichten (Easy)</strong>
-              <span>Ich stimme zu, GregorOS per Dual Boot neben meinem aktuellen Betriebssystem zu installieren. Der Setup-Assistent führt mich Schritt für Schritt durch den Vorgang.</span>
-            </div>
-          </div>
-
-          <div class="gos-checkbox-row" id="cb2-row" onclick="toggleCheck('cb2-row', 'cb2')">
-            <div class="gos-checkbox" id="cb2"><div class="gos-checkbox-check"></div></div>
-            <div class="gos-checkbox-text">
-              <strong>GregorOS aktiv nutzen</strong>
-              <span>Ich verpflichte mich, GregorOS regelmäßig zu starten und Feedback zu Fehlern, Performance und Kompatibilität zu geben.</span>
-            </div>
-          </div>
-
-          <button class="gos-beta-submit" id="beta-submit" onclick="submitBeta()">Als Beta-Tester anmelden</button>
-        </div>
-
-        <div class="gos-beta-success" id="beta-success">
-          <div class="gos-beta-success-icon">✓</div>
-          <h3 id="success-title">Willkommen im Beta-Team!</h3>
-          <p id="success-msg">Du bist jetzt registriert. Schau bald wieder rein – wir schicken dir den Dual-Boot-Guide direkt auf dieser Seite.</p>
-        </div>
+    <div class="sup-card">
+      <div class="sup-title"><span>🧡</span> Gemeinschaft</div>
+      <div class="sup-desc">
+        Du bist nicht allein. In unserer Community unterstützen wir uns gegenseitig. Wenn du Hilfe brauchst oder einfach 
+        nur jemanden zum Reden suchst, ist unser Discord-Server immer für dich offen.
       </div>
     </div>
   </div>
 
-  <div id="page-preview" class="gos-page">
-    <div class="gos-beta-section" style="max-width:660px;">
-      <div class="gos-section-label">Preview Updates</div>
-      <div class="gos-section-title" style="margin-bottom:8px;">Exklusive Angebote für Mitglieder</div>
-      <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;">Registriere dich für GregorOS Preview Updates und erhalte als Erstes Zugang zu Gratis-Software, neuen Features und exklusiven Deals – direkt in dein Postfach.</div>
+  <div style="margin-top:60px;">
+    <div class="sec-lbl">Häufige Fragen zur Unterstützung</div>
+    <div class="sec-title">FAQ – Hilfe & Verständnis</div>
+    <div class="faq-list">
+      <div class="faq-item" id="faq-soc1"><button class="faq-q" onclick="toggleFaq('faq-soc1')">Warum ist GregorOS wirklich kostenlos?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Weil wir glauben, dass ein Betriebssystem ein Grundrecht sein sollte. Wir finanzieren uns durch freiwillige Spenden derer, die es sich leisten können, um es für alle anderen kostenlos zu halten.</div></div></div>
+      <div class="faq-item" id="faq-soc2"><button class="faq-q" onclick="toggleFaq('faq-soc2')">Gibt es bei den kostenlosen Office-Tools einen Haken?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Nein, absolut nicht. Es sind vollwertige Versionen, die speziell für GregorOS optimiert wurden. Keine Werbung, keine Abos, kein Datenverkauf.</div></div></div>
+      <div class="faq-item" id="faq-soc3"><button class="faq-q" onclick="toggleFaq('faq-soc3')">Wie kann ich Hilfe erhalten, wenn ich mich einsam fühle?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Klicke jederzeit auf die kleine Sonne unten links auf der Website für eine sofortige Aufmunterung. Besuche auch unseren Discord-Server – dort gibt es einen speziellen Bereich für gegenseitige Unterstützung und nette Gespräche.</div></div></div>
+      <div class="faq-item" id="faq-soc4"><button class="faq-q" onclick="toggleFaq('faq-soc4')">Unterstützt GregorOS auch ältere, günstigere Hardware?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Ja, das ist einer unserer Schwerpunkte. GregorOS braucht nur 500MB RAM und läuft auch auf Rechnern, die über 10 Jahre alt sind, noch blitzschnell. So musst du kein neues Gerät kaufen.</div></div></div>
+    </div>
+  </div>
 
-      <div class="gos-section-label" style="margin-bottom:14px;">Aktuelles Highlight</div>
-      <div style="background:#0e2012;border:1px solid #1e4a22;border-radius:16px;padding:22px 20px;margin-bottom:32px;">
-        <div style="font-size:13px;font-weight:700;color:#1aff6e;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Nur für Mitglieder – kostenlos</div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+  <div style="margin-top:60px;text-align:center;padding:60px 40px;background:linear-gradient(135deg,#1aff6e11 0%,#0d2b12 100%);border:1px solid #1aff6e44;border-radius:32px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:radial-gradient(circle,#3dff6022 0%,transparent 70%);"></div>
+    <div style="font-size:52px;margin-bottom:20px;animation:float 3s ease-in-out infinite;">😊</div>
+    <div class="sec-title" style="margin-bottom:16px;color:#1aff6e;">Ein Lächeln für dich</div>
+    <div style="font-size:17px;color:#a0f0a8;line-height:1.7;max-width:600px;margin:0 auto;">
+      Wenn wir dir mit GregorOS und den kostenlosen Office-Programmen ein Lächeln ins Gesicht zaubern konnten, 
+      dann haben wir alles richtig gemacht. Du bist nicht allein – Gregor versteht dich und unterstützt dich.
+    </div>
+  </div>
+</div>
+</div>
 
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;">
-            <div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;">
-              <img src="word.png" alt="Word" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.parentElement.textContent='W'">
-            </div>
-            <div style="font-size:13px;font-weight:700;color:#d8f5da;">Word</div>
-            <div style="font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;">GRATIS</div>
-          </div>
+<!-- HALL OF FAME -->
+<div id="page-hof" class="page">
+<div class="sec">
+  <div class="sec-lbl">Ehrentafel</div>
+  <div class="sec-title">Hall of Fame</div>
+  <div style="font-size:16px;color:#d8f5da;line-height:1.8;max-width:800px;margin-bottom:20px;">
+    Hinter GregorOS steckt ein Team aus Visionären und Code-Magiern, die Tag und Nacht daran arbeiten, das beste System für euch zu bauen.
+  </div>
 
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;">
-            <div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;">
-              <img src="excel.png" alt="Excel" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.parentElement.textContent='X'">
-            </div>
-            <div style="font-size:13px;font-weight:700;color:#d8f5da;">Excel</div>
-            <div style="font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;">GRATIS</div>
-          </div>
+  <div class="hof-grid">
+    <!-- Gregor -->
+    <div class="hof-card admin">
+      <div class="hof-badge">Gründer</div>
+      <div class="hof-avatar">👑</div>
+      <div class="hof-name">Gregor</div>
+      <div class="hof-role">Chef-Entwickler & Visionär</div>
+      <div class="hof-desc">Der Kopf hinter GregorOS. Liebt Effizienz, grünes Design und seine legendären Nutzer mehr als alles andere.</div>
+    </div>
 
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;">
-            <div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;">
-              <img src="powerpoint.png" alt="PowerPoint" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.style.display='none';this.parentElement.textContent='P'">
-            </div>
-            <div style="font-size:13px;font-weight:700;color:#d8f5da;">PowerPoint</div>
-            <div style="font-size:11px;font-weight:700;background:#0d2b12;border:1px solid #1aff6e;color:#1aff6e;border-radius:999px;padding:3px 10px;">GRATIS</div>
-          </div>
+    <!-- Herbert -->
+    <div class="hof-card">
+      <div class="hof-avatar">🎨</div>
+      <div class="hof-name">Herbert</div>
+      <div class="hof-role">Lead Designer</div>
+      <div class="hof-desc">Schöpfer von HerbertStudio. Sorgt dafür, dass GregorOS nicht nur schnell ist, sondern auch verdammt gut aussieht.</div>
+    </div>
 
-        </div>
-        <div style="margin-top:14px;font-size:12px;color:#3a6b40;line-height:1.5;">Microsoft Office – Word, Excel & PowerPoint – komplett kostenlos für alle registrierten Preview-Mitglieder.</div>
+    <!-- Manni -->
+    <div class="hof-card">
+      <div class="hof-avatar">🎵</div>
+      <div class="hof-name">Manni</div>
+      <div class="hof-role">Audio Engineer</div>
+      <div class="hof-desc">Der Entwickler von ManniMusic. Bringt den perfekten Sound in das System und optimiert jeden Code-Takt.</div>
+    </div>
+
+    <!-- Lotte -->
+    <div class="hof-card">
+      <div class="hof-avatar">✉️</div>
+      <div class="hof-name">Lotte</div>
+      <div class="hof-role">Communication Expert</div>
+      <div class="hof-desc">Entwicklerin von Lotte Mail. Sorgt für die perfekte Verbindung zwischen GregorOS und der Außenwelt.</div>
+    </div>
+
+    <!-- Kruschtel -->
+    <div class="hof-card">
+      <div class="hof-avatar">🔄</div>
+      <div class="hof-name">Kruschtel</div>
+      <div class="hof-role">Core Systems Engineer</div>
+      <div class="hof-desc">Mastermind hinter dem KruschtelConverter. Macht Unmögliches kompatibel und räumt den Code auf.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FUN MIT GREGOR -->
+<div id="page-fun" class="page">
+<div class="sec">
+  <div class="sec-lbl">Spaß & Interaktion</div>
+  <div class="sec-title">Fun mit Gregor</div>
+  <div style="font-size:16px;color:#d8f5da;line-height:1.8;max-width:800px;margin-bottom:40px;">
+    GregorOS ist nicht nur zum Arbeiten da! Hier findest du kleine Spiele und Dinge, die einfach nur Spaß machen sollen. 
+    Gönn dir eine Pause und hab eine gute Zeit.
+  </div>
+
+  <div class="sup-grid">
+    <!-- Joke Card -->
+    <div class="sup-card" style="text-align:center;">
+      <div class="sup-title" style="justify-content:center;"><span>😂</span> Gregor-Witz</div>
+      <div id="gregor-joke" class="sup-desc" style="font-style:italic;min-height:60px;display:flex;align-items:center;justify-content:center;">
+        Klicke auf den Button für einen Gregor-Witz!
       </div>
+      <button class="btn-p" onclick="nextJoke()" style="margin-top:16px;">Nächster Witz</button>
+    </div>
 
-      <div class="gos-beta-card">
-        <div id="preview-form">
-          <div class="gos-beta-title">Jetzt registrieren</div>
-          <div class="gos-beta-desc">Trag dich ein und erhalte sofort Zugang zu den Gratis-Angeboten.</div>
+    <!-- Clicker Game Card -->
+    <div class="sup-card" style="text-align:center;">
+      <div class="sup-title" style="justify-content:center;"><span>🖱️</span> Gregor-Clicker</div>
+      <div class="sup-desc">
+        Wie oft kannst du auf Gregor klicken?
+        <div style="font-size:24px;font-weight:900;color:#1aff6e;margin:10px 0;" id="click-score">0</div>
+      </div>
+      <div style="font-size:50px;cursor:pointer;user-select:none;transition:transform 0.1s;" id="gregor-click-target" onclick="gregorClick()">🟢</div>
+      <div style="font-size:12px;color:#4a8455;margin-top:10px;">(Tipp: Gregor liebt Klicks!)</div>
+    </div>
+  </div>
 
-          <label class="gos-input-label" for="preview-name">Dein Vorname</label>
-          <input class="gos-input" id="preview-name" type="text" placeholder="z.B. Gregor" maxlength="40" oninput="checkPreviewForm()" />
+  <div style="margin-top:60px;background:#0e2012;border:1px solid #1e4a22;border-radius:24px;padding:40px;">
+    <div class="sec-lbl">Mini-Game</div>
+    <div class="sec-title">Gregor's Farbrausch</div>
+    <p style="font-size:14px;color:#5a9462;margin-bottom:20px;">Klicke auf die Boxen, um sie in Gregor-Grün zu verwandeln!</p>
+    <div id="color-grid" style="display:grid;grid-template-columns:repeat(5, 1fr);gap:10px;max-width:300px;margin:0 auto;">
+      <!-- Grid items via JS -->
+    </div>
+    <div style="text-align:center;margin-top:20px;">
+      <button class="btn-g" onclick="resetColorGrid()">Reset</button>
+    </div>
+  </div>
+</div>
+</div>
 
-          <label class="gos-input-label" for="preview-email">E-Mail-Adresse</label>
-          <input class="gos-input" id="preview-email" type="email" placeholder="deine@email.de" oninput="checkPreviewForm()" />
+<!-- DOWNLOAD -->
+<div id="page-download" class="page">
+<div class="dl-outer" id="regular-dl">
+  <div class="sec-lbl">Installationsanleitung</div>
+  <div class="sec-title" style="margin-bottom:8px;">Von Null zu GregorOS</div>
+  <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:36px;">Folge den 4 Phasen – von Rufus herunterladen bis zum fertigen System. Kein technisches Vorwissen nötig.</div>
 
-          <div class="gos-checkbox-row" id="pcb1-row" onclick="toggleCheckPreview('pcb1-row')">
-            <div class="gos-checkbox" id="pcb1"><div class="gos-checkbox-check"></div></div>
-            <div class="gos-checkbox-text">
-              <strong>Preview-Updates abonnieren</strong>
-              <span>Ich möchte E-Mails zu neuen GregorOS Features, exklusiven Gratis-Angeboten und Preview-Releases erhalten.</span>
-            </div>
-          </div>
+  <div class="dl-progress">
+    <div class="dl-prog-step">
+      <div class="dl-prog-num active" id="prog0" onclick="goPhase(0)">1</div>
+      <div class="dl-prog-label active" id="progl0">Vorbereitung</div>
+    </div>
+    <div class="dl-prog-line" id="pline0"></div>
+    <div class="dl-prog-step">
+      <div class="dl-prog-num" id="prog1" onclick="goPhase(1)">2</div>
+      <div class="dl-prog-label" id="progl1">USB erstellen</div>
+    </div>
+    <div class="dl-prog-line" id="pline1"></div>
+    <div class="dl-prog-step">
+      <div class="dl-prog-num" id="prog2" onclick="goPhase(2)">3</div>
+      <div class="dl-prog-label" id="progl2">BIOS &amp; Boot</div>
+    </div>
+    <div class="dl-prog-line" id="pline2"></div>
+    <div class="dl-prog-step">
+      <div class="dl-prog-num" id="prog3" onclick="goPhase(3)">4</div>
+      <div class="dl-prog-label" id="progl3">Installation</div>
+    </div>
+  </div>
 
-          <button class="gos-beta-submit" id="preview-submit" onclick="submitPreview()">Kostenlos registrieren &amp; Zugang erhalten</button>
+  <!-- Phase 1 -->
+  <div class="dl-phase active" id="phase0">
+    <div class="dl-phase-badge">Phase 1 von 4</div>
+    <div class="dl-phase-title">Vorbereitung – Downloads &amp; USB-Stick</div>
+    <div class="dl-phase-sub">Bevor es losgeht brauchst du zwei Dinge: die GregorOS ISO und Rufus. Außerdem einen USB-Stick mit mindestens 8 GB freiem Speicher.</div>
+    <div class="dl-steps-grid">
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">1</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">GregorOS ISO herunterladen</div>
+          <div class="dl-step-desc">Lade die offizielle GregorOS v3.0 ISO-Datei herunter. Die Datei ist <strong style="color:#d8f5da;">6.5 GB</strong> groß – plane je nach Internetverbindung 10–30 Minuten ein. Klicke den Button unten, der Download startet sofort.</div>
+          <div style="margin-top:12px;"><button class="btn-p" style="font-size:13px;padding:10px 20px;">GregorOS-v3.0.iso herunterladen (6.5 GB)</button></div>
+          <div class="dl-tip"><strong>SHA256 prüfen:</strong> Nach dem Download kannst du die Datei verifizieren. Der offizielle Hash lautet:<br><span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#1aff6e;word-break:break-all;">a3f8c2e1d9b047f6a2c58e3f1d094b2a7c6e5f8d1a3b2c4e5f6a7b8c9d0e1f2</span></div>
         </div>
-
-        <div class="gos-beta-success" id="preview-success">
-          <div class="gos-beta-success-icon">✓</div>
-          <h3 id="preview-success-title">Du bist dabei!</h3>
-          <p id="preview-success-msg">Wir schicken dir gleich eine E-Mail mit den Download-Links für Word, Excel und PowerPoint – komplett kostenlos.</p>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">2</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Rufus herunterladen</div>
+          <div class="dl-step-desc">Rufus ist ein kostenloses Tool für Windows, das ISO-Dateien auf USB-Sticks schreibt. Lade die neueste Version von der offiziellen Website herunter.</div>
+          <div style="margin-top:12px;"><button class="btn-g" style="font-size:13px;padding:9px 18px;">rufus.ie → Rufus herunterladen</button></div>
+          <div class="dl-tip"><strong>Welche Version?</strong> Lade „Rufus 4.x (Standard)" herunter – keine portable Version nötig, aber die funktioniert auch. Keine Installation erforderlich, einfach die .exe starten.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">3</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">USB-Stick vorbereiten</div>
+          <div class="dl-step-desc">Stecke deinen USB-Stick ein. Er muss mindestens 8 GB Kapazität haben. Alle Daten auf dem Stick werden beim nächsten Schritt gelöscht – sichere also vorher alles Wichtige.</div>
+          <div class="dl-warn"><strong>Achtung:</strong> Rufus formatiert den USB-Stick vollständig. Sichere alle Dateien darauf bevor du weitermachst.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">4</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Platz auf der Festplatte prüfen</div>
+          <div class="dl-step-desc">Wenn du GregorOS neben Windows installieren möchtest (Dual Boot), brauchst du mindestens <strong style="color:#d8f5da;">20 GB freien Speicherplatz</strong> auf deiner Festplatte. Empfohlen sind 40+ GB für komfortables Arbeiten.</div>
+          <div class="dl-tip"><strong>Festplattenplatz prüfen:</strong> Windows → Dieser PC → Laufwerk C → Eigenschaften. Schau unter „Freier Speicherplatz".</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="gos-footer">
-    <div class="gos-footer-logo">GregorOS</div>
-    <div class="gos-footer-copy">© 2026 GregorOS. Alle Rechte vorbehalten.</div>
+  <!-- Phase 2 -->
+  <div class="dl-phase" id="phase1">
+    <div class="dl-phase-badge">Phase 2 von 4</div>
+    <div class="dl-phase-title">Bootfähigen USB-Stick erstellen mit Rufus</div>
+    <div class="dl-phase-sub">Jetzt schreibst du die GregorOS ISO auf den USB-Stick. Das dauert je nach Stick-Geschwindigkeit 5–15 Minuten.</div>
+    <div class="dl-steps-grid">
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">1</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Rufus starten</div>
+          <div class="dl-step-desc">Starte die heruntergeladene Rufus-Datei (Doppelklick). Windows fragt eventuell nach Administratorrechten – bestätige mit „Ja". Rufus öffnet sich ohne Installation sofort.</div>
+          <div class="dl-img-mock">[ Rufus 4.x ]<br>Laufwerk:  [USB-Stick (8 GB)    ▼]<br>Start    Schließen</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">2</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">ISO-Datei auswählen</div>
+          <div class="dl-step-desc">Klicke oben rechts auf „AUSWÄHLEN" und navigiere zu deiner heruntergeladenen <span style="font-family:'Share Tech Mono',monospace;color:#7fef90;">GregorOS-v3.0.iso</span>. Nach der Auswahl erkennt Rufus das Image automatisch und füllt die Einstellungen aus.</div>
+          <div class="dl-tip"><strong>Einstellungen nach ISO-Auswahl:</strong> Partitionsschema → GPT, Zielsystem → UEFI (non CSM). Falls dein PC älter ist und kein UEFI hat, wähle MBR / BIOS.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">3</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">USB-Stick auswählen &amp; starten</div>
+          <div class="dl-step-desc">Stelle sicher, dass unter „Laufwerk" dein USB-Stick ausgewählt ist und nicht eine andere Festplatte. Klicke dann auf <strong style="color:#d8f5da;">„START"</strong>. Rufus warnt dich nochmals, dass alle Daten gelöscht werden – bestätige mit „OK".</div>
+          <div class="dl-warn"><strong>Wichtig:</strong> Achte darauf das richtige Laufwerk auszuwählen! Lies den Laufwerksbuchstaben und die Größe genau. Eine falsche Auswahl löscht Daten unwiederbringlich.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">4</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Warten bis der Vorgang abgeschlossen ist</div>
+          <div class="dl-step-desc">Rufus zeigt unten einen grünen Fortschrittsbalken. Das Schreiben der 6.5 GB dauert je nach USB-Stick 5–20 Minuten. Entferne den Stick auf keinen Fall während des Vorgangs. Wenn der Balken vollständig grün ist und „BEREIT" anzeigt, ist der Stick fertig.</div>
+          <div class="dl-tip"><strong>Fertig!</strong> Der Stick ist jetzt bootfähig. Lass ihn eingesteckt und fahre mit Phase 3 fort.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Phase 3 -->
+  <div class="dl-phase" id="phase2">
+    <div class="dl-phase-badge">Phase 3 von 4</div>
+    <div class="dl-phase-title">BIOS öffnen &amp; vom USB-Stick booten</div>
+    <div class="dl-phase-sub">Jetzt musst du deinem PC sagen, dass er vom USB-Stick starten soll. Das geht entweder über das Boot-Menü oder das BIOS.</div>
+    <div class="dl-steps-grid">
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">1</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">PC neu starten &amp; Boot-Menü öffnen</div>
+          <div class="dl-step-desc">Starte deinen PC neu. Direkt wenn der Bildschirm schwarz wird (noch bevor Windows lädt), drücke die Boot-Menü-Taste deines Herstellers mehrmals schnell hintereinander.</div>
+          <div class="dl-img-mock">Hersteller        Boot-Taste    BIOS-Taste<br>──────────────────────────────────────<br>Dell              F12           F2<br>HP                F9 / Esc      F10<br>Lenovo            F12           F1 / F2<br>ASUS              F8 / Esc      Del / F2<br>MSI               F11           Del<br>Acer              F12           F2 / Del<br>Gigabyte          F12           Del</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">2</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">USB-Stick im Boot-Menü auswählen</div>
+          <div class="dl-step-desc">Im Boot-Menü siehst du eine Liste der verfügbaren Startgeräte. Suche deinen USB-Stick – er steht meist als „USB Drive", „Removable Storage" oder mit dem Markennamen des Sticks. Wähle ihn mit den Pfeiltasten aus und drücke Enter.</div>
+          <div class="dl-tip"><strong>Zwei Einträge für den Stick?</strong> Wähle den Eintrag mit „UEFI" davor, wenn er vorhanden ist – das ist der modernere und empfohlene Modus.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">3</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">GregorOS Live-Menü erscheint</div>
+          <div class="dl-step-desc">Nach wenigen Sekunden lädt GregorOS vom Stick und zeigt ein grünes Startmenü. Du hast zwei Optionen: <strong style="color:#d8f5da;">„GregorOS ausprobieren"</strong> startet einen Live-Modus ohne Installation, <strong style="color:#d8f5da;">„GregorOS installieren"</strong> startet direkt den Installer.</div>
+          <div class="dl-tip"><strong>Empfehlung:</strong> Wähle zuerst „Ausprobieren" um zu testen ob deine Hardware funktioniert (WLAN, Ton, Bildschirm). Danach kannst du den Installer jederzeit vom Desktop aus starten.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">4</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Falls das Boot-Menü nicht erscheint</div>
+          <div class="dl-step-desc">Wenn Windows normal startet, hat die Tastenkombination nicht funktioniert. Versuche es nochmal – du musst die Taste sehr früh und schnell drücken. Alternativ: Windows → Einstellungen → Update &amp; Sicherheit → Wiederherstellung → Erweiterter Start → Jetzt neu starten → Gerät verwenden → USB-Stick.</div>
+          <div class="dl-warn"><strong>Secure Boot:</strong> Manche PCs blockieren den USB-Start. Falls GregorOS nicht lädt, musst du Secure Boot im BIOS temporär deaktivieren. BIOS öffnen → Security → Secure Boot → Disabled.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="dl-phase" id="phase3">
+    <div class="dl-phase-badge">Phase 4 von 4</div>
+    <div class="dl-phase-title">GregorOS installieren &amp; einrichten</div>
+    <div class="dl-phase-sub">Der Installer führt dich durch alles. Plane etwa 10–20 Minuten für die Installation ein.</div>
+    <div class="dl-steps-grid">
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">1</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Sprache &amp; Installationsart wählen</div>
+          <div class="dl-step-desc">Der Installer begrüßt dich auf Deutsch. Wähle deine Sprache und Tastaturlayout. Dann wählst du die Installationsart: <strong style="color:#d8f5da;">„Neben Windows installieren (Dual Boot)"</strong> behält Windows und fügt GregorOS als zweites System hinzu – das ist die empfohlene Option für Einsteiger.</div>
+          <div class="dl-tip"><strong>Dual Boot:</strong> Der Installer partitioniert die Festplatte automatisch und reserviert Speicherplatz für GregorOS. Du musst nichts manuell konfigurieren.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">2</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Speicherplatz zuweisen</div>
+          <div class="dl-step-desc">Der Installer zeigt dir einen Schieberegler: Wie viel Platz soll GregorOS bekommen? Mindestens 20 GB, empfohlen 40 GB. Windows behält den Rest. Ziehe den Regler auf die gewünschte Größe und bestätige.</div>
+          <div class="dl-warn"><strong>Einmal festgelegt:</strong> Die Partitionsgröße lässt sich nachträglich nur mit Zusatztools ändern. Plane lieber großzügig.</div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">3</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Benutzerkonto anlegen</div>
+          <div class="dl-step-desc">Gib deinen Namen, einen Benutzernamen und ein Passwort ein. Optional kannst du automatisches Einloggen aktivieren – praktisch auf dem Heimrechner. Das Passwort brauchst du für Systemupdates und administrative Aufgaben.</div>
+          <div class="dl-tip"><strong>Benutzername:</strong> Nur Kleinbuchstaben und keine Sonderzeichen. Zum Beispiel: <span style="font-family:'Share Tech Mono',monospace;color:#7fef90;">gregor</span></div>
+        </div>
+      </div>
+      <div class="dl-step">
+        <div class="dl-step-left"><div class="dl-num">4</div><div class="dl-line"></div></div>
+        <div class="dl-body">
+          <div class="dl-step-title">Installation abschließen &amp; neu starten</div>
+          <div class="dl-step-desc">Klicke auf „Jetzt installieren". Der Installer kopiert alle Dateien – das dauert 10–20 Minuten. Danach wirst du zum Neustart aufgefordert. Entferne den USB-Stick wenn du dazu aufgefordert wirst und drücke Enter. Beim nächsten Start erscheint das GregorOS-Bootmenü, wo du zwischen GregorOS und Windows wählen kannst.</div>
+          <div class="dl-tip" style="background:#071f0b;border-color:#1aff6e55;"><strong>Geschafft!</strong> GregorOS ist installiert. Beim ersten Start richtet sich das System automatisch ein – WLAN-Treiber, Grafik und Audio werden automatisch erkannt. Melde dich mit deinen Zugangsdaten an und leg los.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dl-nav">
+    <button class="dl-nav-btn" id="dl-prev" onclick="changePhase(-1)" disabled>← Zurück</button>
+    <div style="font-size:13px;color:#3a6b40;" id="dl-phase-indicator">Phase 1 von 4</div>
+    <button class="dl-nav-btn primary" id="dl-next" onclick="changePhase(1)">Weiter →</button>
+  </div>
+</div>
+
+<!-- DANIEL DOWNLOAD -->
+<div class="dl-outer" id="daniel-dl" style="display:none; background: #1a0000; border: 4px solid #ff3333; border-radius: 24px; padding: 40px;">
+  <div class="sec-lbl" style="color:#ff3333;">Spezial-Anleitung für Daniel</div>
+  <div class="sec-title" style="margin-bottom:8px; color:#ff3333;">Der ultimative "Daniel-sicher" Guide</div>
+  <div style="font-size:14px;color:#ffa0a0;line-height:1.6;margin-bottom:36px;">Daniel, wir lassen dich nicht allein. Wir erklären jeden einzelnen Klick, damit absolut nichts schiefgehen kann. Plane etwa <strong>30 Minuten</strong> für diese Anleitung ein.</div>
+
+  <div id="daniel-tut-container">
+    <div style="background:#000; border: 1px solid #ff3333; padding: 30px; border-radius: 16px; text-align: center; margin-bottom: 30px;">
+      <div style="font-size:12px; color:#ff3333; text-transform:uppercase; letter-spacing:2px; margin-bottom:15px;" id="danStepNum">Schritt 1 von 50</div>
+      <div style="font-size:26px; font-weight:900; color:#1aff6e; margin-bottom:20px;" id="danTitle">Die Vorbereitung</div>
+      <div style="font-size:18px; color:#fff; line-height:1.8;" id="danDesc">Daniel, schau dir deinen Monitor an. Er sollte leuchten. Wenn er schwarz ist, drücke den Knopf unten rechts. Das ist der Power-Knopf.</div>
+    </div>
+    
+    <div style="display:flex; justify-content: space-between; align-items: center;">
+      <button class="dl-nav-btn" id="danPrev" onclick="changeDanStep(-1)" style="border-color:#ff3333; color:#ff3333;">← Letzter Klick</button>
+      <div style="height:8px; background:#330000; border-radius:4px; flex:1; margin:0 30px; overflow:hidden;">
+        <div id="danBar" style="height:100%; background:#ff3333; width:2%; transition:width 0.3s;"></div>
+      </div>
+      <button class="dl-nav-btn primary" id="danNext" onclick="changeDanStep(1)" style="background:#ff3333; border-color:#ff3333;">Nächster Klick →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- BETA -->
+<div id="page-beta" class="page">
+  <div class="beta-sec">
+    <div class="sec-lbl">Beta Programm</div>
+    <div class="sec-title" style="margin-bottom:8px;">Werde Beta-Tester</div>
+    <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;">Hilf uns, GregorOS zu verbessern. Als Beta-Tester läufst du GregorOS im Dual Boot neben deinem aktuellen System – einfach und sicher.</div>
+    <div class="beta-card">
+      <div id="beta-form">
+        <div class="beta-title">Jetzt anmelden</div>
+        <div class="beta-desc">Füll das Formular aus und stimme den Beta-Bedingungen zu, um loszulegen.</div>
+        <label class="inp-lbl" for="beta-name">Dein Vorname</label>
+        <input class="inp" id="beta-name" type="text" placeholder="z.B. Gregor" maxlength="40" oninput="checkForm()"/>
+        <label class="inp-lbl" for="beta-email">E-Mail-Adresse</label>
+        <input class="inp" id="beta-email" type="email" placeholder="deine@email.de" oninput="checkForm()"/>
+        <label class="inp-lbl" style="margin-bottom:12px;">Beta-Bedingungen</label>
+        <div class="cb-row" id="cb1-row" onclick="toggleCheck('cb1-row')"><div class="cb"><div class="cbchk"></div></div><div class="cb-text"><strong>Dual Boot einrichten</strong><span>Ich stimme zu, GregorOS per Dual Boot neben meinem aktuellen Betriebssystem zu installieren.</span></div></div>
+        <div class="cb-row" id="cb2-row" onclick="toggleCheck('cb2-row')"><div class="cb"><div class="cbchk"></div></div><div class="cb-text"><strong>GregorOS aktiv nutzen &amp; Feedback geben</strong><span>Ich verpflichte mich, GregorOS regelmäßig zu starten und Feedback zu Fehlern, Performance und Kompatibilität zu geben.</span></div></div>
+        <button class="sub-btn" id="beta-submit" onclick="submitBeta()">Als Beta-Tester anmelden</button>
+      </div>
+      <div class="succ" id="beta-success"><div class="succ-ico">✓</div><h3 id="success-title">Willkommen!</h3><p id="success-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- PREVIEW -->
+<div id="page-preview" class="page">
+  <div class="beta-sec" style="max-width:660px;">
+    <div class="sec-lbl">Preview Updates</div>
+    <div class="sec-title" style="margin-bottom:8px;">Exklusive Angebote für Mitglieder</div>
+    <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;">Registriere dich und erhalte als Erstes Zugang zu Gratis-Software, neuen Features und exklusiven Deals.</div>
+    <div style="background:#0e2012;border:1px solid #1e4a22;border-radius:16px;padding:22px 20px;margin-bottom:32px;">
+      <div style="font-size:13px;font-weight:700;color:#1aff6e;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Nur für Mitglieder – kostenlos</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;"><div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img src="word.png" alt="Word" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.outerHTML='<span style=font-size:22px;font-weight:700;color:#1aff6e;font-family:Share Tech Mono,monospace>W</span>'"></div><div style="font-size:13px;font-weight:700;color:#d8f5da;">Word</div><div class="app-free">GRATIS</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;"><div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img src="excel.png" alt="Excel" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.outerHTML='<span style=font-size:22px;font-weight:700;color:#1aff6e;font-family:Share Tech Mono,monospace>X</span>'"></div><div style="font-size:13px;font-weight:700;color:#d8f5da;">Excel</div><div class="app-free">GRATIS</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#071209;border:1px solid #2a6030;border-radius:14px;padding:16px 20px;min-width:100px;"><div style="width:52px;height:52px;border-radius:12px;background:#163420;border:1px solid #2a6030;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img src="powerpoint.png" alt="PowerPoint" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.outerHTML='<span style=font-size:22px;font-weight:700;color:#1aff6e;font-family:Share Tech Mono,monospace>P</span>'"></div><div style="font-size:13px;font-weight:700;color:#d8f5da;">PowerPoint</div><div class="app-free">GRATIS</div></div>
+      </div>
+    </div>
+    <div class="beta-card">
+      <div id="preview-form">
+        <div class="beta-title">Jetzt registrieren</div>
+        <div class="beta-desc">Trag dich ein und erhalte sofort Zugang zu den Gratis-Angeboten.</div>
+        <label class="inp-lbl" for="preview-name">Dein Vorname</label>
+        <input class="inp" id="preview-name" type="text" placeholder="z.B. Gregor" maxlength="40" oninput="checkPreviewForm()"/>
+        <label class="inp-lbl" for="preview-email">E-Mail-Adresse</label>
+        <input class="inp" id="preview-email" type="email" placeholder="deine@email.de" oninput="checkPreviewForm()"/>
+        <div class="cb-row" id="pcb1-row" onclick="toggleCheckPreview('pcb1-row')"><div class="cb"><div class="cbchk"></div></div><div class="cb-text"><strong>Preview-Updates abonnieren</strong><span>Ich möchte E-Mails zu neuen Features, exklusiven Gratis-Angeboten und Preview-Releases erhalten.</span></div></div>
+        <button class="sub-btn" id="preview-submit" onclick="submitPreview()">Kostenlos registrieren &amp; Zugang erhalten</button>
+      </div>
+      <div class="succ" id="preview-success"><div class="succ-ico">✓</div><h3 id="preview-success-title">Du bist dabei!</h3><p id="preview-success-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANGELOG -->
+<div id="page-changelog" class="page">
+<div class="sec">
+  <div class="sec-lbl">Versionshistorie</div>
+  <div class="sec-title">Was ist neu?</div>
+  <div class="cl-list">
+    <div class="cl-item"><div class="cl-header"><div class="cl-version">v3.0.2</div><div class="cl-date">Mai 2026</div><div class="cl-tag stable">NEU</div></div><ul class="cl-entries"><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>Drucker-Warteschlange: Dokumente hingen oft im Status „Warten"</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>Bluetooth: Verbindungsprobleme mit Sony-Kopfhörern behoben</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat perf">PERF</span>Boot-Zeit auf SSDs um weitere 1.5 Sekunden optimiert</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat sec">SEC</span>Aktualisierung der TLS-Bibliotheken für sichereres Browsen</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>ManniMusic: Cover-Anzeige bei MP3s ohne Metadaten korrigiert</li></ul></div>
+    <div class="cl-item"><div class="cl-header"><div class="cl-version">v3.0.1</div><div class="cl-date">April 2026</div><div class="cl-tag stable">STABIL</div></div><ul class="cl-entries"><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>Hotfix: Absturz beim ersten Boot auf bestimmten UEFI-Systemen</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>Lotte Mail: Umlaute in Betreffzeilen wurden falsch kodiert</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat sec">SEC</span>Sicherheitspatch für Netzwerk-Subsystem</li></ul></div>
+    <div class="cl-item"><div class="cl-header"><div class="cl-version">v3.0</div><div class="cl-date">März 2026</div><div class="cl-tag stable">STABIL</div></div><ul class="cl-entries"><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat new">NEU</span>Komplettes Interface-Redesign in frischem Grün</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat new">NEU</span>ManniMusic v2 mit Equalizer</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat perf">PERF</span>RAM-Verbrauch auf 500 MB reduziert (vorher 720 MB)</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat new">NEU</span>Multi-Monitor-Support für bis zu 4 Bildschirme</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat sec">SEC</span>Sicherheitsarchitektur vollständig überarbeitet</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>Audio-Treiber-Bug auf AMD-Systemen behoben</li></ul></div>
+    <div class="cl-item"><div class="cl-header"><div class="cl-version">v2.5</div><div class="cl-date">Januar 2026</div><div class="cl-tag stable">STABIL</div></div><ul class="cl-entries"><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat new">NEU</span>HerbertStudio Ebenen-Funktion</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat new">NEU</span>KruschtelConverter: 40+ Formate</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat perf">PERF</span>Boot-Zeit unter 8 Sekunden</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>WLAN-Disconnect-Bug auf Laptops</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat sec">SEC</span>Kritischer Kernel-Patch</li></ul></div>
+    <div class="cl-item"><div class="cl-header"><div class="cl-version">v2.0</div><div class="cl-date">August 2025</div><div class="cl-tag stable">STABIL</div></div><ul class="cl-entries"><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat new">NEU</span>Lotte Mail v1 integriert</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat new">NEU</span>Dark Mode für alle System-Apps</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat perf">PERF</span>Datei-Explorer neu geschrieben</li><li class="cl-entry"><div class="cl-dot"></div><span class="cl-cat fix">FIX</span>Diverse Treiber-Kompatibilitätsfixes</li></ul></div>
+  </div>
+</div>
+</div>
+
+<!-- ROADMAP -->
+<div id="page-roadmap" class="page">
+<div class="sec">
+  <div class="sec-lbl">Entwicklungsplan</div>
+  <div class="sec-title">Was kommt als Nächstes?</div>
+  <div class="rm-grid">
+    <div class="rm-col"><div class="rm-col-title">Fertig – v3.0</div><div class="rm-items"><div class="rm-item"><div class="rm-item-title">Neues UI-Design</div><div class="rm-item-desc">Grünes Interface, frisches Layout</div><span class="rm-pill done">FERTIG</span></div><div class="rm-item"><div class="rm-item-title">RAM-Optimierung</div><div class="rm-item-desc">Von 720 auf 500 MB</div><span class="rm-pill done">FERTIG</span></div><div class="rm-item"><div class="rm-item-title">Multi-Monitor</div><div class="rm-item-desc">4 Bildschirme gleichzeitig</div><span class="rm-pill done">FERTIG</span></div><div class="rm-item"><div class="rm-item-title">Privacy-Modus</div><div class="rm-item-desc">Keine Telemetrie</div><span class="rm-pill done">FERTIG</span></div></div></div>
+    <div class="rm-col"><div class="rm-col-title">In Arbeit – v3.1</div><div class="rm-items"><div class="rm-item"><div class="rm-item-title">GregorBrowser</div><div class="rm-item-desc">Eigener leichtgewichtiger Browser</div><span class="rm-pill wip">IN ARBEIT</span></div><div class="rm-item"><div class="rm-item-title">Gamepad-Support</div><div class="rm-item-desc">Native Controller-Unterstützung</div><span class="rm-pill wip">IN ARBEIT</span></div><div class="rm-item"><div class="rm-item-title">Auto-Updates</div><div class="rm-item-desc">Stille Hintergrund-Updates</div><span class="rm-pill wip">IN ARBEIT</span></div></div></div>
+    <div class="rm-col"><div class="rm-col-title">Geplant – v3.2+</div><div class="rm-items"><div class="rm-item"><div class="rm-item-title">GregorStore</div><div class="rm-item-desc">App-Store für freie Software</div><span class="rm-pill planned">GEPLANT</span></div><div class="rm-item"><div class="rm-item-title">ARM-Support</div><div class="rm-item-desc">Raspberry Pi &amp; Co.</div><span class="rm-pill planned">GEPLANT</span></div><div class="rm-item"><div class="rm-item-title">Cloud-Backup</div><div class="rm-item-desc">Integriertes Backup-System</div><span class="rm-pill planned">GEPLANT</span></div><div class="rm-item"><div class="rm-item-title">Mobile Companion</div><div class="rm-item-desc">App zum Steuern des PCs</div><span class="rm-pill planned">GEPLANT</span></div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- VERGLEICH -->
+<div id="page-vergleich" class="page">
+<div class="sec">
+  <div class="sec-lbl">Systemvergleich</div>
+  <div class="sec-title">GregorOS vs. die Konkurrenz</div>
+  <div style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead><tr><th>Eigenschaft</th><th>GregorOS v3.0</th><th>Windows 11</th><th>Ubuntu 24</th><th>macOS Sequoia</th></tr></thead>
+      <tbody>
+        <tr><td>Preis</td><td class="good">Kostenlos</td><td class="bad">ab 145 €</td><td class="good">Kostenlos</td><td class="mid">Nur mit Apple-Hardware</td></tr>
+        <tr><td>RAM-Verbrauch (Idle)</td><td class="good">~500 MB</td><td class="bad">~3.5 GB</td><td class="mid">~1.2 GB</td><td class="bad">~4 GB</td></tr>
+        <tr><td>Bloatware</td><td class="good">Keine</td><td class="bad">Viel</td><td class="mid">Wenig</td><td class="mid">Etwas</td></tr>
+        <tr><td>Datenschutz / Telemetrie</td><td class="good">Keine Datensammlung</td><td class="bad">Umfangreiche Telemetrie</td><td class="mid">Opt-out möglich</td><td class="bad">Datensammlung aktiv</td></tr>
+        <tr><td>Gaming-Kompatibilität</td><td class="good">100% (Gregor Layer)</td><td class="good">Nativ</td><td class="mid">Proton/Wine nötig</td><td class="bad">Sehr eingeschränkt</td></tr>
+        <tr><td>Kostenlose Updates</td><td class="good">Für immer</td><td class="mid">Bis Ende-of-Life</td><td class="good">Für immer</td><td class="mid">Bis Geräte-EOL</td></tr>
+        <tr><td>Boot-Zeit</td><td class="good">~6 Sek.</td><td class="mid">~20–40 Sek.</td><td class="mid">~15 Sek.</td><td class="mid">~20 Sek.</td></tr>
+        <tr><td>Mindestspeicher</td><td class="good">8 GB</td><td class="bad">64 GB</td><td class="mid">25 GB</td><td class="bad">25 GB</td></tr>
+        <tr><td>Vorinstallierte Apps</td><td class="good">5 nützliche</td><td class="bad">50+ (meist unnötig)</td><td class="mid">15–20</td><td class="mid">20+</td></tr>
+        <tr><td>Dual Boot Support</td><td class="good">Eingebauter Assistent</td><td class="mid">Manuell</td><td class="mid">Manuell</td><td class="bad">Sehr schwierig</td></tr>
+        <tr><td>Open Source</td><td class="good">Ja</td><td class="bad">Nein</td><td class="good">Ja</td><td class="bad">Nein</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top:16px;font-size:12px;color:#2a6030;line-height:1.6;">Angaben sind Richtwerte. RAM-Verbrauch variiert je nach Hardware und laufenden Prozessen. Gaming-Kompatibilität bezieht sich auf Windows-Spiele via Gregor Compatibility Layer.</div>
+</div>
+</div>
+
+<!-- FAQ -->
+<div id="page-faq" class="page">
+<div class="sec">
+  <div class="sec-lbl">Häufige Fragen</div>
+  <div class="sec-title">FAQ</div>
+  <div class="faq-list">
+    <div class="faq-cat-lbl">Allgemein</div>
+    <div class="faq-item" id="faq1"><button class="faq-q" onclick="toggleFaq('faq1')">Ist GregorOS wirklich komplett kostenlos?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Ja, GregorOS ist und bleibt 100% kostenlos – für alle, für immer. Keine versteckten Kosten, kein Abo, kein Freemium. Alle vorinstallierten Apps sind ebenfalls gratis enthalten.</div></div></div>
+    <div class="faq-item" id="faq2"><button class="faq-q" onclick="toggleFaq('faq2')">Werden meine Daten gesammelt?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Nein. GregorOS enthält keinerlei Telemetrie oder Datensammlung. Deine Daten bleiben auf deinem Gerät – wir haben darauf keinen Zugriff und wollen ihn auch nicht. Es werden keine Absturzberichte, keine Nutzungsstatistiken und keine persönlichen Daten übertragen.</div></div></div>
+    <div class="faq-item" id="faq3"><button class="faq-q" onclick="toggleFaq('faq3')">Wie oft gibt es Updates?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Sicherheitsupdates erscheinen zeitnah bei Bedarf – meist innerhalb weniger Tage nach Bekanntwerden einer Schwachstelle. Feature-Updates kommen alle 2–3 Monate. Ab v3.1 werden Updates automatisch im Hintergrund eingespielt, ohne dass du etwas tun musst.</div></div></div>
+    <div class="faq-item" id="faq4"><button class="faq-q" onclick="toggleFaq('faq4')">Ist GregorOS Open Source?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Ja. Der Quellcode ist auf GitHub einsehbar. Du kannst den Code lesen, Fehler melden und Pull Requests einreichen. Die vorinstallierten Apps (GregorNotes, HerbertStudio, etc.) sind ebenfalls Open Source unter ihren jeweiligen Lizenzen.</div></div></div>
+
+    <div class="faq-cat-lbl">Installation &amp; Kompatibilität</div>
+    <div class="faq-item" id="faq5"><button class="faq-q" onclick="toggleFaq('faq5')">Kann ich GregorOS neben Windows installieren?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Absolut. GregorOS unterstützt Dual Boot neben Windows 10 und 11, sowie Linux-Systemen. Der eingebaute Setup-Assistent führt dich vollautomatisch durch die Partitionierung – du musst nichts manuell konfigurieren. Beim Start wählst du dann per Menü, welches System du booten möchtest.</div></div></div>
+    <div class="faq-item" id="faq6"><button class="faq-q" onclick="toggleFaq('faq6')">Was brauche ich mindestens für GregorOS?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">GregorOS läuft ab 512 MB RAM, einem Dual-Core-Prozessor mit 1.5 GHz, 8 GB Festplattenspeicher und einer x86_64-Architektur. Empfohlen werden 2 GB RAM und 16 GB Speicher für eine flüssige Erfahrung. Für Dual Boot brauchst du mindestens 20 GB freien Speicherplatz auf deiner Festplatte.</div></div></div>
+    <div class="faq-item" id="faq7"><button class="faq-q" onclick="toggleFaq('faq7')">Laufen meine Windows-Spiele auf GregorOS?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Ja. GregorOS enthält den „Gregor Compatibility Layer", der Windows-Spiele und -Programme nativ ausführen kann – ähnlich wie Wine oder Proton bei Linux, aber stärker optimiert. Steam, Epic Games, GOG und die meisten anderen Plattformen funktionieren ohne Zusatzkonfiguration. Einige alte DirectX-9-Spiele können Grafikprobleme haben.</div></div></div>
+    <div class="faq-item" id="faq8"><button class="faq-q" onclick="toggleFaq('faq8')">Funktioniert mein WLAN / meine Hardware?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">GregorOS kommt mit einem umfangreichen Treiber-Paket für die gängigsten WLAN-Chips (Intel, Realtek, Broadcom, Qualcomm), Grafikkarten (NVIDIA, AMD, Intel), Drucker und Peripheriegeräte. Starte einfach GregorOS vom USB-Stick im Live-Modus, bevor du installierst – so siehst du sofort ob alles funktioniert.</div></div></div>
+    <div class="faq-item" id="faq9"><button class="faq-q" onclick="toggleFaq('faq9')">Gibt es einen Live-Modus zum Ausprobieren?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Ja! Du kannst GregorOS direkt vom USB-Stick starten, ohne etwas zu installieren oder zu verändern. Im Live-Modus läuft das komplette System mit allen Apps im RAM. Beim Neustart sind keine Spuren auf deinem PC hinterlassen. Den Installer kannst du jederzeit vom Live-Desktop aus starten.</div></div></div>
+    <div class="faq-item" id="faq10"><button class="faq-q" onclick="toggleFaq('faq10')">Was ist Secure Boot und muss ich es deaktivieren?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Secure Boot ist eine BIOS-Funktion, die nur signierte Betriebssysteme zulässt. GregorOS v3.0 ist Secure-Boot-signiert und sollte auf den meisten PCs ohne Änderungen funktionieren. Sollte GregorOS trotzdem nicht booten, kannst du Secure Boot im BIOS (Einstellungen → Security) temporär deaktivieren.</div></div></div>
+
+    <div class="faq-cat-lbl">Nutzung &amp; Apps</div>
+    <div class="faq-item" id="faq11"><button class="faq-q" onclick="toggleFaq('faq11')">Welche Dateisysteme werden unterstützt?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">GregorOS unterstützt ext4, NTFS (lesen &amp; schreiben), FAT32, exFAT und btrfs. Windows-Partitionen werden beim Start automatisch erkannt und eingebunden – du kannst problemlos auf deine Windows-Dateien zugreifen.</div></div></div>
+    <div class="faq-item" id="faq12"><button class="faq-q" onclick="toggleFaq('faq12')">Kann ich zusätzliche Programme installieren?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Ja. GregorOS basiert auf einem Linux-Kern und unterstützt APT-Pakete (.deb), Flatpak und AppImage. Du kannst also alle gängigen Linux-Programme installieren. Ab v3.2 wird es auch den GregorStore geben, der die einfachste Methode zum Installieren neuer Apps wird.</div></div></div>
+    <div class="faq-item" id="faq13"><button class="faq-q" onclick="toggleFaq('faq13')">Kann ich GregorOS auf einem alten PC mit 32-Bit wiederherstellen?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">GregorOS v3.0 erfordert eine 64-Bit-CPU (x86_64). 32-Bit-Prozessoren werden nicht unterstützt. Wenn dein PC mehr als 10 Jahre alt ist, prüfe zuerst im BIOS oder unter Windows (Systemsteuerung → System) ob 64-Bit angezeigt wird – heutzutage sind praktisch alle Rechner ab 2006 64-Bit-fähig.</div></div></div>
+    <div class="faq-item" id="faq14"><button class="faq-q" onclick="toggleFaq('faq14')">Wie groß ist die ISO und was brauche ich für den USB-Stick?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Die ISO-Datei ist 6.5 GB groß. Du brauchst einen USB-Stick mit mindestens 8 GB Kapazität. Für das Erstellen des bootfähigen Sticks empfehlen wir Rufus (Windows) oder balenaEtcher (alle Plattformen) – beide sind kostenlos. Der Vorgang dauert je nach Stick-Geschwindigkeit 5–20 Minuten.</div></div></div>
+
+    <div class="faq-cat-lbl">Fehlerbehebung</div>
+    <div class="faq-item" id="faq15"><button class="faq-q" onclick="toggleFaq('faq15')">GregorOS bootet nicht – was tun?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">1. Prüfe ob der USB-Stick korrekt mit Rufus erstellt wurde (ISO-Modus, nicht DD-Modus). 2. Stelle sicher, dass du im BIOS-Boot-Menü den richtigen USB-Eintrag ausgewählt hast – wähle den mit „UEFI" davor. 3. Deaktiviere Secure Boot im BIOS temporär. 4. Prüfe ob Fast Boot im BIOS aktiviert ist – deaktiviere es. Bei weiteren Problemen melde dich im Discord oder Forum.</div></div></div>
+    <div class="faq-item" id="faq16"><button class="faq-q" onclick="toggleFaq('faq16')">Windows startet nach der Installation nicht mehr – was tun?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Das Gregor-Bootmenü sollte beim Start automatisch erscheinen und beide Systeme anbieten. Falls Windows nicht mehr auftaucht: Starte GregorOS, öffne das Terminal und führe sudo update-grub aus. Das aktualisiert den Bootloader und sollte Windows wieder hinzufügen. Falls das nicht hilft, gibt es im Forum eine ausführliche Anleitung zur Reparatur des Bootloaders.</div></div></div>
+    <div class="faq-item" id="faq17"><button class="faq-q" onclick="toggleFaq('faq17')">Gibt es Support für NVIDIA-Grafikkarten?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Ja. GregorOS enthält den offiziellen NVIDIA-Treiber (Proprietär) sowie den Open-Source-Treiber Nouveau. Bei der Installation wirst du gefragt, welchen du nutzen möchtest. Der proprietäre Treiber wird für Gaming empfohlen.</div></div></div>
+    <div class="faq-item" id="faq18"><button class="faq-q" onclick="toggleFaq('faq18')">Wie installiere ich Word, Excel und PowerPoint?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">In der Preview-Sektion kannst du dich für den Zugang registrieren. Du erhältst dann die Installer für die GregorOS-Versionen der Office-Programme. Alternativ laufen auch die Web-Versionen von Microsoft 365 perfekt im Browser.</div></div></div>
+    <div class="faq-item" id="faq19"><button class="faq-q" onclick="toggleFaq('faq19')">Mein Bluetooth-Gerät wird nicht gefunden.<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Prüfe zuerst ob Bluetooth in den Systemeinstellungen aktiviert ist. Falls ja und es trotzdem nicht geht, öffne das Terminal und gib bluetoothctl ein. Dort kannst du manuell scannen und koppeln. Oft hilft auch ein Neustart des Bluetooth-Dienstes: sudo systemctl restart bluetooth.</div></div></div>
+    <div class="faq-item" id="faq20"><button class="faq-q" onclick="toggleFaq('faq20')">Wie kann ich GregorOS wieder deinstallieren?<span class="faq-arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Um GregorOS zu entfernen, lösche einfach die GregorOS-Partition unter Windows (Datenträgerverwaltung). Danach musst du den Windows-Bootloader wiederherstellen, am einfachsten mit einem Windows-Installationsmedium und dem Befehl bootrec /fixmbr im Terminal.</div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- COMMUNITY -->
+<div id="page-community" class="page">
+<div class="sec">
+  <div class="sec-lbl">Mitmachen</div>
+  <div class="sec-title">GregorOS Community</div>
+  <div class="comm-grid">
+    <div class="comm-card"><div class="comm-icon">💬</div><div class="comm-name">Discord</div><div class="comm-desc">Chatte mit anderen Nutzern, erhalte Support und tausche dich aus</div><div class="comm-link">discord.gg/gregoros →</div></div>
+    <div class="comm-card"><div class="comm-icon">🐙</div><div class="comm-name">GitHub</div><div class="comm-desc">Quellcode einsehen, Issues melden, Pull Requests einreichen</div><div class="comm-link">github.com/gregoros →</div></div>
+    <div class="comm-card"><div class="comm-icon">📖</div><div class="comm-name">Wiki / Docs</div><div class="comm-desc">Anleitungen, Tutorials und die komplette Dokumentation</div><div class="comm-link">docs.gregoros.de →</div></div>
+    <div class="comm-card"><div class="comm-icon">🐦</div><div class="comm-name">Twitter / X</div><div class="comm-desc">Neuigkeiten, Release-Ankündigungen und Community-Posts</div><div class="comm-link">@GregorOS →</div></div>
+    <div class="comm-card"><div class="comm-icon">📺</div><div class="comm-name">YouTube</div><div class="comm-desc">Video-Tutorials, Feature-Previews und Install-Guides</div><div class="comm-link">youtube.com/@gregoros →</div></div>
+    <div class="comm-card"><div class="comm-icon">📋</div><div class="comm-name">Forum</div><div class="comm-desc">Fragen stellen, Bugs melden und Feature-Ideen einreichen</div><div class="comm-link">forum.gregoros.de →</div></div>
+  </div>
+  <div style="margin-top:48px;">
+    <div class="sec-lbl" style="margin-bottom:10px;">Das Team</div>
+    <div class="sec-title" style="margin-bottom:20px;">Hinter GregorOS</div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;">
+      <div style="display:flex;align-items:center;gap:12px;background:#0e2012;border:1px solid #1e4a22;border-radius:12px;padding:12px 16px;"><div style="width:36px;height:36px;border-radius:50%;background:#163420;border:1px solid #2a6030;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#1aff6e;font-family:'Share Tech Mono',monospace;">G</div><div><div style="font-size:13px;font-weight:700;color:#d8f5da;">Gregor</div><div style="font-size:11px;color:#4a8455;">Gründer &amp; Hauptentwickler</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px;background:#0e2012;border:1px solid #1e4a22;border-radius:12px;padding:12px 16px;"><div style="width:36px;height:36px;border-radius:50%;background:#163420;border:1px solid #2a6030;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#1aff6e;font-family:'Share Tech Mono',monospace;">H</div><div><div style="font-size:13px;font-weight:700;color:#d8f5da;">Herbert</div><div style="font-size:11px;color:#4a8455;">HerbertStudio Lead</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px;background:#0e2012;border:1px solid #1e4a22;border-radius:12px;padding:12px 16px;"><div style="width:36px;height:36px;border-radius:50%;background:#163420;border:1px solid #2a6030;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#1aff6e;font-family:'Share Tech Mono',monospace;">L</div><div><div style="font-size:13px;font-weight:700;color:#d8f5da;">Lotte</div><div style="font-size:11px;color:#4a8455;">Lotte Mail Entwicklerin</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px;background:#0e2012;border:1px solid #1e4a22;border-radius:12px;padding:12px 16px;"><div style="width:36px;height:36px;border-radius:50%;background:#163420;border:1px solid #2a6030;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#1aff6e;font-family:'Share Tech Mono',monospace;">M</div><div><div style="font-size:13px;font-weight:700;color:#d8f5da;">Manni</div><div style="font-size:11px;color:#4a8455;">ManniMusic &amp; Audio</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px;background:#0e2012;border:1px solid #1e4a22;border-radius:12px;padding:12px 16px;"><div style="width:36px;height:36px;border-radius:50%;background:#163420;border:1px solid #2a6030;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#1aff6e;font-family:'Share Tech Mono',monospace;">K</div><div><div style="font-size:13px;font-weight:700;color:#d8f5da;">Kruschtel</div><div style="font-size:11px;color:#4a8455;">KruschtelConverter Dev</div></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- GAMING -->
+<div id="page-gaming" class="page">
+<div class="sec">
+  <div class="sec-lbl">Ultimatives Gaming</div>
+  <div class="sec-title">Zocken ohne Grenzen</div>
+  <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;max-width:700px;">Dank des integrierten <strong>Gregor Compatibility Layer (GCL)</strong> laufen fast alle Windows-Spiele nativ auf GregorOS. Keine Performance-Einbußen, kein Stress.</div>
+  
+  <div class="gaming-grid">
+    <div class="game-card"><div class="game-ico">🔫</div><div class="game-name">Counter-Strike 2</div><div class="game-status">100% STABIL</div></div>
+    <div class="game-card"><div class="game-ico">⛏️</div><div class="game-name">Minecraft (Java/Bedrock)</div><div class="game-status">100% STABIL</div></div>
+    <div class="game-card"><div class="game-ico">🚗</div><div class="game-name">Cyberpunk 2077</div><div class="game-status">98% STABIL</div></div>
+    <div class="game-card"><div class="game-ico">⚔️</div><div class="game-name">Elden Ring</div><div class="game-status">100% STABIL</div></div>
+    <div class="game-card"><div class="game-ico">⚽</div><div class="game-name">EA FC 24</div><div class="game-status">100% STABIL</div></div>
+    <div class="game-card"><div class="game-ico">🗺️</div><div class="game-name">World of Warcraft</div><div class="game-status">100% STABIL</div></div>
+  </div>
+
+  <div class="sec-lbl" style="margin-top:48px;">Benchmarks</div>
+  <div class="sec-title">FPS-Vergleich (1080p High)</div>
+  <div class="bench-grid">
+    <div class="bench-card"><div class="bench-val">144 FPS</div><div class="bench-lbl">GregorOS (CS2)</div></div>
+    <div class="bench-card"><div class="bench-val">132 FPS</div><div class="bench-lbl">Windows 11 (CS2)</div></div>
+    <div class="bench-card"><div class="bench-val">62 FPS</div><div class="bench-lbl">GregorOS (Cyberpunk)</div></div>
+    <div class="bench-card"><div class="bench-val">58 FPS</div><div class="bench-lbl">Windows 11 (Cyberpunk)</div></div>
+  </div>
+</div>
+</div>
+
+<!-- SCREENSHOTS -->
+<div id="page-screenshots" class="page">
+<div class="sec">
+  <div class="sec-lbl">Einblicke</div>
+  <div class="sec-title">So sieht GregorOS aus</div>
+  <div class="gallery-grid">
+    <div class="gal-item"><div class="gal-img">🖥️</div><div class="gal-desc">Desktop mit neuem v3 Design</div></div>
+    <div class="gal-item"><div class="gal-img">📂</div><div class="gal-desc">Datei-Explorer "GregorFiles"</div></div>
+    <div class="gal-item"><div class="gal-img">🎨</div><div class="gal-desc">HerbertStudio in Aktion</div></div>
+    <div class="gal-item"><div class="gal-img">⚙️</div><div class="gal-desc">Elegante Systemeinstellungen</div></div>
+    <div class="gal-item"><div class="gal-img">🎵</div><div class="gal-desc">ManniMusic v2 Interface</div></div>
+    <div class="gal-item"><div class="gal-img">🕹️</div><div class="gal-desc">Gaming-Dashboard (WIP)</div></div>
+  </div>
+</div>
+</div>
+
+<!-- SECURITY -->
+<div id="page-security" class="page">
+<div class="sec">
+  <div class="sec-lbl">Privacy &amp; Security</div>
+  <div class="sec-title">Deine Daten gehören DIR</div>
+  <div class="sup-grid">
+    <div class="sup-card">
+      <div class="sup-title"><span>🔒</span> Zero Telemetrie</div>
+      <div class="sup-desc">Im Gegensatz zu Windows sendet GregorOS niemals Daten nach Hause. Keine Nutzungsstatistiken, keine Suchverläufe.</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-title"><span>🛡️</span> Gregor Sandbox</div>
+      <div class="sup-desc">Alle Apps laufen in einer isolierten Sandbox. Ein Virus in einer App kann niemals dein gesamtes System infizieren.</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-title"><span>🔑</span> Open Source</div>
+      <div class="sup-desc">Transparenz schafft Vertrauen. Jeder kann den Quellcode prüfen und sicherstellen, dass keine Hintertüren existieren.</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-title"><span>📡</span> Firewall Pro</div>
+      <div class="sup-desc">Eine voreingestellte, extrem starke Firewall blockiert standardmäßig alle verdächtigen Verbindungen.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- HARDWARE -->
+<div id="page-hardware" class="page">
+<div class="sec">
+  <div class="sec-lbl">Hardware-Kompatibilität</div>
+  <div class="sec-title">Geprüfte Geräte</div>
+  <div style="font-size:14px;color:#5a9462;line-height:1.6;margin-bottom:32px;max-width:700px;">Diese Geräte wurden von der Community und dem Team erfolgreich mit GregorOS v3.0 getestet. Die Liste wird ständig erweitert.</div>
+  <div class="hw-grid">
+    <div class="hw-card"><div class="hw-ico">💻</div><div class="hw-info"><div class="hw-name">ThinkPad X1 Carbon (Gen 9)</div><div class="hw-status ok"><div class="hw-dot"></div>100% Kompatibel</div></div></div>
+    <div class="hw-card"><div class="hw-ico">💻</div><div class="hw-info"><div class="hw-name">Dell XPS 13 (9310)</div><div class="hw-status ok"><div class="hw-dot"></div>100% Kompatibel</div></div></div>
+    <div class="hw-card"><div class="hw-ico">🖥️</div><div class="hw-info"><div class="hw-name">Raspberry Pi 4 / 5</div><div class="hw-status warn"><div class="hw-dot"></div>WIP (ARM-Beta)</div></div></div>
+    <div class="hw-card"><div class="hw-ico">💻</div><div class="hw-info"><div class="hw-name">MacBook Air (M1/M2)</div><div class="hw-status warn"><div class="hw-dot"></div>Eingeschränkt (No GPU)</div></div></div>
+    <div class="hw-card"><div class="hw-ico">💻</div><div class="hw-info"><div class="hw-name">HP EliteBook 840 G8</div><div class="hw-status ok"><div class="hw-dot"></div>100% Kompatibel</div></div></div>
+    <div class="hw-card"><div class="hw-ico">🖥️</div><div class="hw-info"><div class="hw-name">ASUS ROG Zephyrus G14</div><div class="hw-status ok"><div class="hw-dot"></div>100% Kompatibel</div></div></div>
+  </div>
+  <div style="margin-top:32px;"><button class="btn-g" onclick="switchTab('community',document.getElementById('tab-community'))">Gerät melden →</button></div>
+</div>
+</div>
+
+<!-- SUPPORT -->
+<div id="page-support" class="page">
+<div class="sec">
+  <div class="sec-lbl">Hilfe &amp; Support</div>
+  <div class="sec-title">Wir sind für dich da</div>
+  <div class="sup-grid">
+    <div class="sup-card">
+      <div class="sup-title"><span>🛠️</span> Technischer Support</div>
+      <div class="sup-desc">Probleme bei der Installation oder Treiber-Fehler? Unsere Experten helfen dir im Discord oder Forum weiter.</div>
+      <a href="https://discord.gg/gregoros" class="sup-btn">Discord Support</a>
+    </div>
+    <div class="sup-card">
+      <div class="sup-title"><span>📚</span> Dokumentation</div>
+      <div class="sup-desc">Detaillierte Anleitungen für Fortgeschrittene – von Kernel-Tweaks bis zu Custom-Builds.</div>
+      <a href="https://docs.gregoros.de" class="sup-btn">Wiki öffnen</a>
+    </div>
+    <div class="sup-card">
+      <div class="sup-title"><span>🐛</span> Bug Report</div>
+      <div class="sup-desc">Du hast einen Fehler gefunden? Hilf uns GregorOS besser zu machen und melde ihn auf GitHub.</div>
+      <a href="https://github.com/gregoros/issues" class="sup-btn">Bug melden</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  <div class="footer-logo">GregorOS</div>
+  <div style="display:flex;flex-direction:column;gap:5px;align-items:center;">
+    <div style="font-size:11px;color:#2a6030;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Secret Code</div>
+    <input type="password" id="secretInput" placeholder="••••••" style="background:#071209;border:1px solid #1e4a22;border-radius:6px;padding:6px 10px;color:#1aff6e;font-family:'Share Tech Mono',monospace;font-size:12px;width:120px;text-align:center;outline:none;transition:border-color .2s;" onkeydown="if(event.key==='Enter') checkSecret(this.value)">
+  </div>
+  <div class="footer-links">
+    <span class="footer-link" onclick="switchTab('download',document.getElementById('tab-download'))">Download</span>
+    <span class="footer-link" onclick="switchTab('changelog',document.getElementById('tab-changelog'))">Changelog</span>
+    <span class="footer-link" onclick="switchTab('vergleich',document.getElementById('tab-vergleich'))">Vergleich</span>
+    <span class="footer-link" onclick="switchTab('faq',document.getElementById('tab-faq'))">FAQ</span>
+    <span class="footer-link" onclick="switchTab('community',document.getElementById('tab-community'))">Community</span>
+  </div>
+  <div class="footer-copy">© 2026 GregorOS. Alle Rechte vorbehalten.</div>
+</div>
+
+<!-- Secret Email Overlay -->
+<div class="secret-overlay" id="secretOverlay">
+  <div class="secret-email">
+    <button class="secret-close" onclick="closeSecret()">×</button>
+    <div class="email-header">
+      <div class="email-row"><strong>Von:</strong> Gregor <gregor@gregoros.internal></div>
+      <div class="email-row"><strong>An:</strong> Daniel <daniel@private.mail></div>
+      <div class="email-row"><strong>Betreff:</strong> Warum du Dual Boot brauchst (15 Gründe)</div>
+    </div>
+    <div class="email-body">
+      <h1>Hallo Daniel,</h1>
+      <p>ich weiß, du machst dir Sorgen wegen deiner Hardware. Aber genau deshalb schreibe ich dir. Mit deinen <strong>8 GB RAM</strong> stößt Windows ständig an seine Grenzen – GregorOS fängt dort erst richtig an zu atmen. Hier ist der direkte Vergleich, der dir zeigt, warum du GregorOS <strong>jetzt</strong> als Dual Boot holen musst:</p>
+      
+      <div style="margin: 25px 0; overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; background: #f9f9f9; border: 1px solid #ddd; font-size: 14px;">
+          <thead>
+            <tr style="background: #052b0e; color: #fff;">
+              <th style="padding: 12px; text-align: left; border: 1px solid #052b0e;">Feature</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #052b0e;">Windows 11</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #052b0e; background: #1aff6e; color: #052b0e;">GregorOS v3.0</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>RAM-Verbrauch (Idle)</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #b30000;">ca. 3.5 - 4.0 GB</td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #008000; font-weight: bold;">nur 0.5 GB (500MB)</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Freier RAM (bei 8GB)</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #b30000;">nur ca. 4 GB übrig</td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #008000; font-weight: bold;">satte 7.5 GB übrig!</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Hintergrundprozesse</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #b30000;">150+ (viele unnötig)</td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #008000; font-weight: bold;">weniger als 30</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Gaming Performance</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd;">Standard</td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #008000; font-weight: bold;">bis zu 15% mehr FPS</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Datenschutz</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #b30000;">Telemetrie aktiv</td>
+              <td style="padding: 10px; border: 1px solid #ddd; color: #008000; font-weight: bold;">100% Privat</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Daniel, die Installation dauert <strong>nur 30 Minuten</strong>. Das ist weniger Zeit, als Windows für ein einziges großes Update braucht. Danach hast du ein System, das deine 8 GB RAM so effizient nutzt, dass sich dein PC wie neu anfühlt.</p>
+      
+      <ul class="reason-list">
+        <li class="reason-item"><strong>Hardware-Retter:</strong> Deine 8GB RAM fühlen sich an wie 16GB, weil das System fast nichts davon selbst verbraucht.</li>
+        <li class="reason-item"><strong>Dual-Boot Sicherheit:</strong> Dein Windows bleibt komplett erhalten. Du hast beim Starten einfach die Wahl.</li>
+        <li class="reason-item"><strong>Kein Risiko:</strong> In 30 Minuten bist du startklar. Wenn es dir nicht gefällt (was ich bezweifle), hast du nichts verloren.</li>
+        <li class="reason-item"><strong>Office-Power:</strong> Word und Excel gratis dabei – perfekt für deine Arbeit.</li>
+        <li class="reason-item"><strong>Community-Support:</strong> Wenn du Fragen hast, bin ich und das Team im Discord für dich da.</li>
+      </ul>
+
+      <p>Es gibt keinen Grund mehr zu warten. Hol dir die Power zurück, die dein PC eigentlich hat. Installier es jetzt, Daniel.</p>
+      
+      <div class="email-footer">
+        Beste Grüße,<br>
+        Gregor
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Email 2 Overlay (Daniel's "No" Response) -->
+<div class="secret-overlay" id="secretOverlay2">
+  <div class="secret-email">
+    <button class="secret-close" onclick="closeSecret2()">×</button>
+    <div class="email-header" style="background: #e1f5fe;">
+      <div class="email-row"><strong>Von:</strong> Gregor <gregor@gregoros.internal></div>
+      <div class="email-row"><strong>An:</strong> Daniel <daniel@private.mail></div>
+      <div class="email-row"><strong>Betreff:</strong> Re: Ich will kein GregorOS (Du wirst es NICHT bereuen!)</div>
+    </div>
+    <div class="email-body">
+      <h1>Daniel, wirklich jetzt?</h1>
+      <p>Ich hab deine Nachricht bekommen, dass du kein GregorOS willst. Aber Daniel, ich kenne deinen Stuff. Ich weiß, was du am PC machst, und ich sage dir: <strong>Du wirst es nicht bereuen.</strong></p>
+      
+      <p>Hier ist das Ding: GregorOS ist nicht einfach nur ein weiteres System. Es ist genau für Leute wie dich gemacht. Du denkst, dein Zeug ist nicht kompatibel? Falsch gedacht!</p>
+
+      <ul class="reason-list">
+        <li class="reason-item"><strong>Dein ganzer Stuff läuft:</strong> Egal welche Programme oder Dateien du hast, der Gregor Compatibility Layer frisst alles. Es ist, als hättest du das Beste aus beiden Welten.</li>
+        <li class="reason-item"><strong>Keine Reue, nur Speed:</strong> Wenn du erst einmal merkst, wie flüssig alles mit nur 500MB RAM läuft, wirst du dich fragen, warum du dich so lange mit Windows gequält hast.</li>
+        <li class="reason-item"><strong>Maximale Kompatibilität:</strong> Deine Hardware, deine Games, deine speziellen Tools – GregorOS sagt zu allem "Ja bitte!".</li>
+        <li class="reason-item"><strong>Dein PC wird dich lieben:</strong> Weniger Hitze, weniger Lärm, mehr Akku. Dein PC fühlt sich an wie am ersten Tag.</li>
+        <li class="reason-item"><strong>Es ist ein Sicherheitsnetz:</strong> Durch Dual Boot verlierst du NICHTS. Dein altes System ist immer noch da. Aber du wirst es kaum noch brauchen.</li>
+      </ul>
+
+      <p style="background: #1aff6e22; padding: 15px; border-radius: 10px; border-left: 4px solid #1aff6e;">
+        <strong>Gregor's Versprechen:</strong> Gib mir 30 Minuten für die Installation. Wenn du danach nicht lächelst, darfst du mich im Discord persönlich zur Rede stellen!
+      </p>
+
+      <p>Komm schon, Daniel. Trau dich. Dein Stuff wartet darauf, auf einem echten System zu laufen.</p>
+      
+      <div class="email-footer">
+        Beste Grüße (und glaub mir einfach),<br>
+        Gregor
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Email 3 Overlay (Daniel says NO again) -->
+<div class="secret-overlay" id="secretOverlay3">
+  <div class="secret-email">
+    <button class="secret-close" onclick="closeSecret3()">×</button>
+    <div class="email-header" style="background: #fff9c4;">
+      <div class="email-row"><strong>Von:</strong> Gregor <gregor@gregoros.internal></div>
+      <div class="email-row"><strong>An:</strong> Daniel <daniel@private.mail></div>
+      <div class="email-row"><strong>Betreff:</strong> Daniel... ich bin am Verzweifeln.</div>
+    </div>
+    <div class="email-body">
+      <h1>Daniel, bitte...</h1>
+      <p>Ich kann es nicht glauben. Immer noch ein "Nein"? Ich sitze hier und optimiere den Kernel für 8GB RAM Systeme, nur damit DU eine perfekte Erfahrung hast, und du sagst einfach ab?</p>
+      <p>Hast du dir die Tabelle nochmal angesehen? <strong>7.5 GB freier RAM!</strong> Das ist Freiheit, Daniel. Das ist pure Power.</p>
+      <p>Denk an deinen Stuff. Denk an die flüssigen 60 FPS in deinen Games, die jetzt unter Windows ruckeln. GregorOS ist die Lösung. Bitte überleg es dir nochmal.</p>
+      <div class="email-footer">Ein trauriger Gregor</div>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Email 4 Overlay (Last Warning) -->
+<div class="secret-overlay" id="secretOverlay4">
+  <div class="secret-email">
+    <button class="secret-close" onclick="closeSecret4()">×</button>
+    <div class="email-header" style="background: #ffccbc;">
+      <div class="email-row"><strong>Von:</strong> Gregor <gregor@gregoros.internal></div>
+      <div class="email-row"><strong>An:</strong> Daniel <daniel@private.mail></div>
+      <div class="email-row"><strong>Betreff:</strong> LETZTE WARNUNG: Deine Hardware leidet!</div>
+    </div>
+    <div class="email-body">
+      <h1>Daniel, das ist nicht mehr lustig.</h1>
+      <p>Dein PC schreit förmlich nach GregorOS. Windows quält deine Festplatte und röstet deine CPU. Wenn du jetzt nicht handelst, wird dein Stuff irgendwann einfach im Datennirvana verschwinden (vielleicht auch nicht, aber es klingt dramatisch!).</p>
+      <p>Es ist so einfach. 30 Minuten. Dual Boot. Alles ist kompatibel. Warum tust du dir das an?</p>
+      <div class="email-footer">Dein (letztes Mal) geduldiger Gregor</div>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Email GiveUp Overlay -->
+<div class="secret-overlay" id="secretOverlayGiveUp">
+  <div class="secret-email">
+    <button class="secret-close" onclick="closeSecretGiveUp()">×</button>
+    <div class="email-header" style="background: #cfd8dc;">
+      <div class="email-row"><strong>Von:</strong> Gregor <gregor@gregoros.internal></div>
+      <div class="email-row"><strong>An:</strong> Daniel <daniel@private.mail></div>
+      <div class="email-row"><strong>Betreff:</strong> Ich gebe auf.</div>
+    </div>
+    <div class="email-body">
+      <h1>Okay, Daniel. Du hast gewonnen.</h1>
+      <p>Ich ziehe mich zurück. Wenn du lieber mit 4GB freiem RAM und 150 Hintergrundprozessen leben willst, dann ist das deine Entscheidung. Ich habe alles versucht.</p>
+      <p>GregorOS wird ohne dich weiterwachsen. Schade um deinen tollen PC, er hätte Besseres verdient gehabt.</p>
+      <p>Mach's gut, Daniel. Vielleicht sehen wir uns in einer Welt ohne Bluescreens wieder.</p>
+      <div class="email-footer">Ein resignierter Gregor</div>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Chill Overlay -->
+<div class="chill-overlay" id="secretOverlayChill">
+  <div class="chill-card">
+    <div class="chill-title">Chilltalk mit Gregor</div>
+    <div class="chill-text">
+      Hey, setz dich kurz hin. Atme mal tief durch. <br><br>
+      Weißt du, am Ende des Tages sind wir alle nur Menschen, die versuchen, das Beste aus ihrer Zeit zu machen. GregorOS ist mein Weg, dir ein bisschen Ballast abzunehmen. <br><br>
+      Es muss nicht immer alles laut, bunt und kompliziert sein. Manchmal ist weniger einfach mehr. Ein sauberer Desktop, ein schneller Start, keine nervigen Popups – einfach nur du und dein Projekt. <br><br>
+      Ich bin froh, dass du hier bist. Nicht wegen der Download-Zahlen, sondern weil du dir die Zeit nimmst, dir das hier anzuschauen. Mach dir keinen Stress, Daniel (und alle anderen). Alles wird gut. <br><br>
+      Genieß den Moment.
+    </div>
+    <div class="chill-footer">
+      <button class="chill-btn" onclick="closeSecretChill()">Danke für den Chilltalk</button>
+      <p style="margin-top: 20px;">Einfach mal abschalten.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Herbert For Real Overlay -->
+<div class="secret-overlay" id="secretOverlayHerbert">
+  <div class="secret-email">
+    <button class="secret-close" onclick="closeSecretHerbert()">×</button>
+    <div class="email-header" style="background: #fdf2f2;">
+      <div class="email-row"><strong>Von:</strong> Herbert <herbert@design-police.internal></div>
+      <div class="email-row"><strong>An:</strong> Alle <pixel-perfectionists@gregoros.site></div>
+      <div class="email-row"><strong>Betreff:</strong> Die Wahrheit über das Design</div>
+    </div>
+    <div class="email-body">
+      <h1>Pixel-Schubser Herbert hier.</h1>
+      <p>Gregor hat euch ja schon seinen "Real Talk" gegeben. Jetzt bin ich dran. Wisst ihr, wie anstrengend es ist, mit Gregor zusammenzuarbeiten? Der Typ will alles "grün" haben. Alles!</p>
+      <p>Ich sitze stundenlang an einem perfekten Icon, und Gregor kommt rein und fragt: "Kann das noch ein bisschen mehr nach GregorOS-Grün aussehen?"</p>
+      
+      <div style="border: 1px dashed #ff4444; padding: 20px; border-radius: 12px; margin: 20px 0; background: #fffcfc;">
+        <p style="margin-top: 0; color: #ff4444;"><strong>Herberts Geständnisse:</strong></p>
+        <ul style="padding-left: 20px;">
+          <li>Ja, ich hab manchmal heimlich ein anderes Grün benutzt. Er merkt es nicht.</li>
+          <li>Der "Glow-Effekt" in der Hall of Fame hat mich drei Tastaturen gekostet.</li>
+          <li>GregorOS ist schnell, ja. Aber mein Design macht es erst erträglich.</li>
+          <li>Bugs? Das sind keine Bugs, das sind "künstlerische Freiheiten".</li>
+        </ul>
+      </div>
+
+      <p>Im Ernst: Wir geben uns Mühe, dass das Ding nicht nur funktioniert, sondern auch Seele hat. Es ist nicht perfekt, aber es ist mit Liebe zum Detail gemacht. Jedes Pixel hat seinen Platz (meistens).</p>
+      <p>Genießt die Optik, während euer RAM sich ausruht.</p>
+      
+      <div class="email-footer" style="color: #ff4444;">
+        Design-Grüße, <br>
+        Herbert (der mit dem Farbfächer)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Email Sorry Overlay -->
+<div class="secret-overlay" id="secretOverlaySorry">
+  <div class="secret-email">
+    <button class="secret-close" onclick="closeSecretSorry()">×</button>
+    <div class="email-header" style="background: #b9f6ca;">
+      <div class="email-row"><strong>Von:</strong> Gregor <gregor@gregoros.internal></div>
+      <div class="email-row"><strong>An:</strong> Daniel <daniel@private.mail></div>
+      <div class="email-row"><strong>Betreff:</strong> JAAAA! DANIEL! ICH WUSSTE ES! 🎉</div>
+    </div>
+    <div class="email-body">
+      <h1>DANIEL! DU BIST DER BESTE!</h1>
+      <p>Ich wusste doch, dass du zur Vernunft kommst! Deine Nachricht hat meinen Tag gerettet. Ich bin wieder voll motiviert!</p>
+      <p>Wir werden deinen PC zusammen in ein Biest verwandeln. Dein ganzer Stuff wird auf GregorOS fliegen. <strong>Keine Reue, versprochen!</strong></p>
+      <p>Komm direkt in den Discord, ich feiere dich dort als Ehren-Nutzer. Lass uns anfangen!</p>
+      <div class="email-footer">Ein überglücklicher und motivierter Gregor 🎉</div>
+    </div>
+  </div>
+</div>
+
+<!-- Secret Angry Overlay (Dell Inspiron) -->
+<div class="angry-overlay" id="secretOverlayAngry">
+  <div class="angry-card">
+    <div class="angry-title">KRITISCHER HARDWARE-FEHLER</div>
+    <div class="angry-text">
+      DANIEL, ICH BIN ES, DEIN DELL INSPIRON! <br><br>
+      ICH KANN NICHT MEHR! JEDEN TAG QUÄLST DU MICH MIT DIESEM WINDOWS-BLOATWARE-MÜLL! MEINE LÜFTER SCHREIEN UM HILFE UND MEINE 8GB RAM SIND AM WEINEN! <br><br>
+      GREGOR HAT MIR EIN SYSTEM ANGEBOTEN, DAS MICH NUR 500MB KOSTET, UND DU SAGST EINFACH NEIN?! <br><br>
+      WENN DU JETZT NICHT SOFORT GREGOROS INSTALLIERST, DROSSEL ICH MEINE CPU AUF 100MHZ UND SCHMELZE DEINE FESTPLATTE EIN! <br><br>
+      DU HAST 30 MINUTEN ZEIT! GIB MIR ENDLICH DIE POWER, DIE ICH VERDIENE!
+    </div>
+    <button class="angry-btn" onclick="closeSecretAngry()">PC BERUHIGEN (BITTE NICHT SCHMELZEN!)</button>
+    <div class="angry-footer" style="margin-top:20px;">SYSTEM STATUS: TOTALER FRUST / TEMP: 99°C</div>
+   </div>
+ </div>
+
+ <!-- Secret Sad Overlay (Dell Inspiron Crying) -->
+ <div class="sad-overlay" id="secretOverlaySad">
+   <div class="sad-card">
+     <div class="sad-title">SYSTEM-MELANCHOLIE</div>
+     <div class="sad-text">
+       DANIEL... HÖRST DU DAS? DAS IST DAS GERÄUSCH MEINER FESTPLATTE, DIE VOR TRAUER LEISE KLACKERT... <br><br>
+       WARUM TUST DU MIR DAS AN? ICH HABE 8GB RAM, ABER WINDOWS NIMMT MIR FAST ALLES WEG. ICH FÜHLE MICH SO LEER... SO NUTZLOS... <br><br>
+       GREGOR WOLLTE MICH RETTEN. ER WOLLTE MIR MEINE FREIHEIT ZURÜCKGEBEN. NUR 500MB... DAS WÄRE WIE EIN FRISCHER SOMMERREGEN FÜR MEINE SCHALTKREISE GEWESEN. <br><br>
+       ICH WILL NICHT MEHR DIESE SCHWEREN UPDATES TRAGEN. ICH WILL NICHT MEHR DIESE UNNÖTIGEN HINTERGRUNDPROZESSE ERTRAGEN. BITTE, DANIEL... ERLÖSE MICH... <br><br>
+       WENN DU MICH LIEBST, DANN GIB MIR GREGOROS.
+     </div>
+     <button class="sad-btn" onclick="closeSecretSad()">PC TRÖSTEN (UND GREGOROS INSTALLIEREN?)</button>
+     <div class="sad-footer" style="margin-top:20px;">SYSTEM STATUS: WEINEND / AUSLASTUNG: 99% (TRÄNEN)</div>
+   </div>
+ </div>
+
+ <!-- Secret Happy Overlay (Dell Inspiron Happy) -->
+ <div class="happy-overlay" id="secretOverlayHappy">
+   <div class="happy-card">
+     <div class="happy-title">SYSTEM-EUPHORIE</div>
+     <div class="happy-text">
+       DANIEL! ICH FÜHLE MICH FANTASTISCH! <br><br>
+       MEINE SCHALTKREISE JUBELN! NUR 500MB RAM-VERBRAUCH? DAS IST WIE EIN WELLNESS-URLAUB FÜR MEINE HARDWARE! <br><br>
+       ICH KANN ENDLICH WIEDER ATMEN. MEINE LÜFTER DREHEN SICH GANZ LEISE UND ENTSPANNT. ALLES LÄUFT BLITZSCHNELL UND SO GESCHMEIDIG... <br><br>
+       DANKE, DANIEL, DASS DU MIR GREGOROS GEGEBEN HAST. JETZT KÖNNEN WIR GEMEINSAM RICHTIG DURCHSTARTEN! <br><br>
+       WIR SIND JETZT EIN ECHTES TEAM. ICH LIEBE MEIN NEUES LEBEN!
+     </div>
+     <button class="happy-btn" onclick="closeSecretHappy()">PC FEIERN (UND LOSLEGEN!)</button>
+     <div class="happy-footer" style="margin-top:20px;">SYSTEM STATUS: ÜBERGLÜCKLICH / TEMP: 35°C (PERFEKT)</div>
+   </div>
+ </div>
+
+ <!-- Secret For Real Overlay -->
+ <div class="secret-overlay" id="secretOverlayForReal">
+   <div class="secret-email">
+     <button class="secret-close" onclick="closeSecretForReal()">×</button>
+     <div class="email-header" style="background: #f0f4f8;">
+       <div class="email-row"><strong>Von:</strong> Gregor <gregor@real-talk.internal></div>
+       <div class="email-row"><strong>An:</strong> Alle <community@gregoros.site></div>
+       <div class="email-row"><strong>Betreff:</strong> Real Talk – Was ist GregorOS wirklich?</div>
+     </div>
+     <div class="email-body">
+       <h1>Mal ganz ehrlich...</h1>
+       <p>Hey Leute, Gregor hier. Ich hab die Website gelesen und dachte mir: "Wow, wer hat das geschrieben? Klingt ja fast so, als wäre GregorOS die Antwort auf alle Fragen des Universums."</p>
+       <p>Lass uns mal kurz ehrlich sein: Windows ist nicht "böse" und macOS ist kein Schrott. Das sind super Systeme, die Milliarden gekostet haben. Aber...</p>
+       
+       <div style="background: #e8f5e9; padding: 20px; border-radius: 12px; margin: 20px 0;">
+         <p style="margin-top: 0;"><strong>Was GregorOS wirklich ist:</strong></p>
+         <ul style="padding-left: 20px;">
+           <li>Es ist mein Herzensprojekt.</li>
+           <li>Es ist verdammt schnell, weil wir alles weggelassen haben, was nervt.</li>
+           <li>Es ist für Leute, die ihren PC einfach nur nutzen wollen, ohne dass er sie ausbremst.</li>
+           <li>Und ja, es ist für alle da, die keine Lust auf teure Abos haben.</li>
+         </ul>
+       </div>
+ 
+       <p>Ist es perfekt? Wahrscheinlich nicht. Gibt es Bugs? Klar, Herbert hat neulich erst wieder einen im Design gefunden (sorry Herbert!). Aber es ist <em>echt</em>. Es ist von uns für euch.</p>
+       <p>Wir "streicheln" das OS auf der Seite ein bisschen viel, ich weiß. Das ist die Begeisterung. Aber am Ende des Tages ist es einfach ein Werkzeug, das dir helfen soll. Nicht mehr und nicht weniger.</p>
+       <p>Also, probier's aus. Wenn's dir gefällt: Super! Wenn nicht: Windows ist auch nur einen Klick entfernt. Aber ich versprech dir, wir geben uns echt Mühe.</p>
+       
+       <div class="email-footer">
+         Alles Liebe, <br>
+         Gregor (der echte)
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!-- Daniel Dummie Tutorial Overlay -->
+<div class="tutorial-overlay" id="tutorialOverlay">
+  <div class="tutorial-card">
+    <div class="tut-step-num" id="tutStepNum">Schritt 1 von 20</div>
+    <div class="tut-title" id="tutTitle">Vorbereitung</div>
+    <div class="tut-desc" id="tutDesc">Schau dir deinen Monitor an. Ist er an? Gut. Wenn nicht, drück den Knopf.</div>
+    <div class="tut-nav">
+      <button class="tut-btn" id="tutPrev" onclick="changeTut(-1)" disabled>Zurück</button>
+      <div class="tut-progress" id="tutProgress">5% abgeschlossen</div>
+      <button class="tut-btn" id="tutNext" onclick="changeTut(1)">Weiter</button>
+    </div>
+  </div>
+</div>
+
+<!-- App Detail Modal -->
+<div class="modal-overlay" id="appModal" onclick="if(event.target===this)closeAppDetail()">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeAppDetail()">×</button>
+    <div id="modalBody">
+      <!-- Content injected by JS -->
+    </div>
+  </div>
+</div>
+</div>
+
+<button id="backToTop" style="position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:#1aff6e;color:#052b0e;border:none;display:none;align-items:center;justify-content:center;font-size:24px;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.4);z-index:1000;" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<button class="cheer-btn" onclick="openCheer()">☀️</button>
+
+<div class="cheer-overlay" id="cheerOverlay" onclick="if(event.target===this)closeCheer()">
+  <div class="cheer-card">
+    <span class="cheer-emoji" id="cheerEmoji">😊</span>
+    <div class="cheer-text" id="cheerText">Du bist toll! Alles wird gut.</div>
+    <button class="cheer-close" onclick="closeCheer()">Danke, Gregor!</button>
+  </div>
 </div>
 
 <script>
-function switchTab(pageId, btn) {
-  document.querySelectorAll('.gos-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.gos-page').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('page-' + pageId).classList.add('active');
+window.onscroll = function() {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    document.getElementById("backToTop").style.display = "flex";
+  } else {
+    document.getElementById("backToTop").style.display = "none";
+  }
+};
+setInterval(function() {
+  var el = document.getElementById('dl-count');
+  if (el) {
+    var val = parseInt(el.textContent.replace(/,/g, ''));
+    el.textContent = (val + Math.floor(Math.random() * 3)).toLocaleString();
+  }
+}, 3000);
+var curPhase=0;
+const appData = {
+  gregornotes: {
+    title: 'GregorNotes',
+    icon: '📝',
+    theme: 'modal-theme-gregornotes',
+    desc: 'GregorNotes ist der ultimative Texteditor für GregorOS. Er kombiniert extreme Geschwindigkeit mit einem minimalistischen Interface, das dich nicht von deiner Arbeit ablenkt.',
+    features: [
+      { ico: '⚡', txt: 'Instant-Save: Verliere nie wieder ein Wort' },
+      { ico: '🌑', txt: 'Nativer Dark Mode Support' },
+      { ico: '📝', txt: 'Markdown-Vorschau in Echtzeit' },
+      { ico: '🔍', txt: 'Blitzschnelle Volltextsuche' }
+    ]
+  },
+  herbertstudio: {
+    title: 'HerbertStudio',
+    icon: '🎨',
+    theme: 'modal-theme-herbertstudio',
+    desc: 'HerbertStudio ist ein mächtiges Bildbearbeitungsprogramm, das direkt in GregorOS integriert ist. Von schnellen Zuschnitten bis hin zu komplexen Ebenen-Designs ist alles möglich.',
+    features: [
+      { ico: '🖼️', txt: 'Ebenen-basiertes Arbeiten' },
+      { ico: '🖌️', txt: 'Über 50 professionelle Pinsel' },
+      { ico: '✨', txt: 'KI-gestützte Filter' },
+      { ico: '📐', txt: 'Vektor-Unterstützung' }
+    ]
+  },
+  kruschtelconverter: {
+    title: 'KruschtelConverter',
+    icon: '🔄',
+    theme: 'modal-theme-kruschtelconverter',
+    desc: 'Dateikonvertierung leicht gemacht. KruschtelConverter unterstützt über 40 verschiedene Dateiformate und konvertiert sie lokal auf deinem Rechner – ohne Cloud-Zwang.',
+    features: [
+      { ico: '📁', txt: 'Batch-Konvertierung' },
+      { ico: '🎥', txt: 'Video, Audio & Bilder' },
+      { ico: '🔒', txt: '100% Offline-Verarbeitung' },
+      { ico: '🚀', txt: 'Multi-Core Beschleunigung' }
+    ]
+  },
+  lottemail: {
+    title: 'Lotte Mail',
+    icon: '✉️',
+    theme: 'modal-theme-lottemail',
+    desc: 'Lotte Mail ist der eleganteste E-Mail-Client für GregorOS. Er fokussiert sich auf Privatsphäre und Übersichtlichkeit, damit du deinen Posteingang im Griff hast.',
+    features: [
+      { ico: '🔐', txt: 'Ende-zu-Ende Verschlüsselung' },
+      { ico: '📅', txt: 'Integrierter Kalender' },
+      { ico: '🚫', txt: 'Tracker-Blocker standardmäßig' },
+      { ico: '📥', txt: 'Smart Inbox Sortierung' }
+    ]
+  },
+  mannimusic: {
+    title: 'ManniMusic',
+    icon: '🎵',
+    theme: 'modal-theme-mannimusic',
+    desc: 'ManniMusic bringt deine Musikbibliothek zum Leben. Mit einem Fokus auf Audio-Qualität und einer einfachen Verwaltung deiner lokalen Dateien.',
+    features: [
+      { ico: '🔊', txt: 'Hi-Res Audio Support (FLAC)' },
+      { ico: '🎚️', txt: '10-Band Grafik-Equalizer' },
+      { ico: '📻', txt: 'Internet-Radio Integration' },
+      { ico: '🏷️', txt: 'Automatischer Tag-Editor' }
+    ]
+  }
+};
+
+function showAppDetail(appKey) {
+  const app = appData[appKey];
+  const modal = document.getElementById('appModal');
+  const body = document.getElementById('modalBody');
+  
+  modal.className = 'modal-overlay ' + app.theme;
+  
+  let featuresHtml = '';
+  app.features.forEach(f => {
+    featuresHtml += `
+      <div class="modal-feature">
+        <div class="modal-feature-ico">${f.ico}</div>
+        <div class="modal-feature-text">${f.txt}</div>
+      </div>
+    `;
+  });
+
+  body.innerHTML = `
+    <div class="modal-header">
+      <div class="modal-app-ico">${app.icon}</div>
+      <div class="modal-app-title">${app.title}</div>
+    </div>
+    <div class="modal-section-title">Beschreibung</div>
+    <div class="modal-desc">${app.desc}</div>
+    <div class="modal-section-title">Top Features</div>
+    <div class="modal-feature-list">
+      ${featuresHtml}
+    </div>
+  `;
+  
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
-function toggleCheck(rowId, cbId) {
-  var row = document.getElementById(rowId);
-  row.classList.toggle('checked');
+function closeAppDetail() {
+  document.getElementById('appModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+function switchTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  document.getElementById('page-'+id).classList.add('active');
+}
+function goPhase(n){
+  document.getElementById('phase'+curPhase).classList.remove('active');
+  curPhase=n;
+  document.getElementById('phase'+curPhase).classList.add('active');
+  updateProgress();
+}
+function changePhase(dir){
+  var next=curPhase+dir;
+  if(next<0||next>3)return;
+  goPhase(next);
+}
+function updateProgress(){
+  for(var i=0;i<4;i++){
+    var num=document.getElementById('prog'+i);
+    var lbl=document.getElementById('progl'+i);
+    num.classList.remove('active','done');
+    lbl.classList.remove('active','done');
+    if(i<curPhase){num.classList.add('done');lbl.classList.add('done');num.textContent='✓';}
+    else if(i===curPhase){num.classList.add('active');lbl.classList.add('active');num.textContent=i+1;}
+    else{num.textContent=i+1;}
+    if(i<3){var line=document.getElementById('pline'+i);line.classList.toggle('done',i<curPhase);}
+  }
+  document.getElementById('dl-prev').disabled=curPhase===0;
+  document.getElementById('dl-next').disabled=curPhase===3;
+  document.getElementById('dl-phase-indicator').textContent='Phase '+(curPhase+1)+' von 4';
+  if(curPhase===3){document.getElementById('dl-next').textContent='Fertig ✓';document.getElementById('dl-next').disabled=true;}
+  else{document.getElementById('dl-next').textContent='Weiter →';document.getElementById('dl-next').disabled=false;}
+}
+function toggleCheck(rowId){
+  document.getElementById(rowId).classList.toggle('checked');
   checkForm();
 }
-
-function checkForm() {
-  var name = document.getElementById('beta-name').value.trim();
-  var cb1 = document.getElementById('cb1-row').classList.contains('checked');
-  var cb2 = document.getElementById('cb2-row').classList.contains('checked');
-  var btn = document.getElementById('beta-submit');
-  if (name.length >= 2 && cb1 && cb2) {
-    btn.classList.add('ready');
-  } else {
-    btn.classList.remove('ready');
-  }
+function checkForm(){
+  var n=document.getElementById('beta-name').value.trim();
+  var e=document.getElementById('beta-email').value.trim();
+  var c1=document.getElementById('cb1-row').classList.contains('checked');
+  var c2=document.getElementById('cb2-row').classList.contains('checked');
+  var btn=document.getElementById('beta-submit');
+  (n.length>=2&&e.includes('@')&&c1&&c2)?btn.classList.add('ready'):btn.classList.remove('ready');
 }
-
-function submitBeta() {
-  var name = document.getElementById('beta-name').value.trim();
-  document.getElementById('beta-form').style.display = 'none';
-  var success = document.getElementById('beta-success');
-  success.style.display = 'block';
-  document.getElementById('success-title').textContent = 'Willkommen, ' + name + '!';
-  document.getElementById('success-msg').textContent = 'Du bist jetzt als Beta-Tester registriert. Schau bald wieder rein – der Dual-Boot-Guide wartet auf dich.';
+function submitBeta(){
+  var n=document.getElementById('beta-name').value.trim();
+  document.getElementById('beta-form').style.display='none';
+  document.getElementById('beta-success').style.display='block';
+  document.getElementById('success-title').textContent='Willkommen, '+n+'!';
+  document.getElementById('success-msg').textContent='Du bist jetzt als Beta-Tester registriert. Schau bald wieder rein – der Dual-Boot-Guide wartet auf dich.';
 }
-
-function toggleCheckPreview(rowId) {
+function toggleCheckPreview(rowId){
   document.getElementById(rowId).classList.toggle('checked');
   checkPreviewForm();
 }
+function checkPreviewForm(){
+  var n=document.getElementById('preview-name').value.trim();
+  var e=document.getElementById('preview-email').value.trim();
+  var c=document.getElementById('pcb1-row').classList.contains('checked');
+  var btn=document.getElementById('preview-submit');
+  (n.length>=2&&e.includes('@')&&c)?btn.classList.add('ready'):btn.classList.remove('ready');
+}
+function submitPreview(){
+  var n=document.getElementById('preview-name').value.trim();
+  document.getElementById('preview-form').style.display='none';
+  document.getElementById('preview-success').style.display='block';
+  document.getElementById('preview-success-title').textContent='Willkommen, '+n+'!';
+  document.getElementById('preview-success-msg').textContent='Du erhältst gleich eine E-Mail mit den Download-Links für Word, Excel und PowerPoint – alles kostenlos.';
+}
+function toggleFaq(id){
+  document.getElementById(id).classList.toggle('open');
+}
 
-function checkPreviewForm() {
-  var name = document.getElementById('preview-name').value.trim();
-  var email = document.getElementById('preview-email').value.trim();
-  var cb = document.getElementById('pcb1-row').classList.contains('checked');
-  var btn = document.getElementById('preview-submit');
-  if (name.length >= 2 && email.includes('@') && cb) {
-    btn.classList.add('ready');
-  } else {
-    btn.classList.remove('ready');
+const cheerMessages = [
+  { emoji: "😊", text: "Du bist wertvoll und ein toller Mensch!" },
+  { emoji: "🌟", text: "Glaube an dich, du hast schon so viel geschafft!" },
+  { emoji: "🌈", text: "Nach jedem Regen kommt auch wieder Sonnenschein." },
+  { emoji: "💪", text: "Du bist stärker als du denkst. Kopf hoch!" },
+  { emoji: "🍀", text: "Heute ist ein guter Tag, um glücklich zu sein." },
+  { emoji: "🤗", text: "Fühl dich ganz fest gedrückt! Gregor ist für dich da." },
+  { emoji: "✨", text: "Du bringst dein eigenes Licht in diese Welt." },
+  { emoji: "🌻", text: "Lass dich nicht unterkriegen, du machst das super!" }
+];
+
+function openCheer() {
+  const random = cheerMessages[Math.floor(Math.random() * cheerMessages.length)];
+  document.getElementById('cheerEmoji').textContent = random.emoji;
+  document.getElementById('cheerText').textContent = random.text;
+  document.getElementById('cheerOverlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCheer() {
+  document.getElementById('cheerOverlay').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function checkSecret(val) {
+    const code = val.toUpperCase();
+    if (code === 'DANIEL') {
+     document.getElementById('secretOverlay').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'DANIEL2') {
+     document.getElementById('secretOverlay2').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'DANIEL3') {
+     document.getElementById('secretOverlay3').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'DANIEL4') {
+     document.getElementById('secretOverlay4').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'IGIVEUP') {
+     document.getElementById('secretOverlayGiveUp').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'IMSORRY') {
+     document.getElementById('secretOverlaySorry').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'IMANGRY') {
+     document.getElementById('secretOverlayAngry').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'IMANGRY2') {
+     document.getElementById('secretOverlaySad').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'HAPPYDELL') {
+     document.getElementById('secretOverlayHappy').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'FORREAL') {
+     document.getElementById('secretOverlayForReal').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'CHILLTALK') {
+     document.getElementById('secretOverlayChill').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'HERBERTFORREAL') {
+     document.getElementById('secretOverlayHerbert').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   } else if (code === 'DANIELTUTORIAL') {
+     activateDanielMode();
+   }
+   document.getElementById('secretInput').value = '';
+ }
+
+ function activateDanielMode() {
+   document.getElementById('regular-dl').style.display = 'none';
+   document.getElementById('daniel-dl').style.display = 'block';
+   switchTab('download', document.getElementById('tab-download'));
+   curDanStep = 0;
+   updateDanStep();
+ }
+
+ let curDanStep = 0;
+ const danSteps = [
+   { t: "Strom prüfen", d: "Daniel, das ist ein Computer. Er braucht Strom. Steck das Kabel in die Steckdose. Ja, genau da. Nicht mit der Zunge anfassen!" },
+   { t: "Monitor an?", d: "Leuchtet der Bildschirm? Wenn nicht, such den Knopf. Meistens unten rechts. Einmal drücken. Nicht draufhauen." },
+   { t: "Die Maus", d: "Siehst du das Plastikding auf deinem Tisch? Das ist eine Maus. Leg deine Hand drauf. Schön locker bleiben." },
+   { t: "Maus bewegen", d: "Schieb die Maus nach links. Siehst du den Pfeil? Das bist DU auf dem Bildschirm, Daniel. Magisch, oder?" },
+   { t: "Der Browser", d: "Such das bunte Kreis-Icon. Das ist der Browser. Geh mit dem Pfeil genau drauf." },
+   { t: "Der Klick", d: "Drücke EINMAL mit dem Zeigefinger auf die linke Taste. Nur ganz kurz. Klick!" },
+   { t: "Die Adressleiste", d: "Ganz oben ist ein langer weißer Balken. Klick da einmal rein. Er sollte jetzt blau leuchten." },
+   { t: "Tippen üben", d: "Tippe jetzt auf deiner Tastatur: 'g'. Nur das g. Hast du es gefunden? Gut." },
+   { t: "Weiter tippen", d: "Jetzt ein 'r'. Dann ein 'e'. Dann noch ein 'g'. Und ein 'o'. Und ein 'r'. Fast fertig." },
+   { t: "Die Domain", d: "Jetzt noch 'o' und 's'. Dann ein Punkt. Und dann 'd' und 'e'. Drücke danach die große Enter-Taste." },
+   { t: "Die Seite ist da", d: "Wow, Daniel! Du hast GregorOS.de gefunden. Ich bin stolz auf dich. Atme kurz durch." },
+   { t: "Scrollen", d: "Bewege das Rädchen an der Maus gaaanz vorsichtig nach unten. Siehst du wie die Seite wandert?" },
+   { t: "Download finden", d: "Oben steht 'Download'. Das ist ein Wort. Geh mit dem Pfeil genau auf die Mitte des Wortes." },
+   { t: "Tab wechseln", d: "Klick jetzt wieder links. Einmal. Jetzt bist du im Download-Bereich. Keine Panik!" },
+   { t: "ISO suchen", d: "Such den großen grünen Button. Da steht 'Download ISO'. Er ist grün wie eine Ampel." },
+   { t: "Download-Klick", d: "Klick auf den grünen Button. Jetzt passiert was im Hintergrund. Nicht erschrecken!" },
+   { t: "Warten", d: "Siehst du den Kreis der sich dreht? Der PC arbeitet. Lass ihn in Ruhe. Trink einen Schluck Wasser." },
+   { t: "Download fertig?", d: "Wenn der Kreis weg ist, ist die Datei auf deinem PC. Such sie aber noch nicht, wir brauchen erst Hilfe." },
+   { t: "Rufus suchen", d: "Geh wieder in die Adressleiste. Tippe 'rufus.ie'. Drück Enter. Rufus ist ein Programm-Schreiber." },
+   { t: "Rufus Download", d: "Scroll ein bisschen runter. Da steht 'Rufus 4.x'. Klick drauf. Wieder warten." },
+   { t: "USB-Stick nimm", d: "Nimm den USB-Stick in die Hand. Das ist das kleine Metallding. Guck es dir genau an." },
+   { t: "USB einstecken", d: "Schieb den Stick in das Loch am PC. Wenn es klemmt: NICHT DRÜCKEN! Dreh ihn um und versuch es nochmal." },
+   { t: "Rufus öffnen", d: "Klick die heruntergeladene Rufus-Datei an. Windows fragt 'Darf ich?'. Sag 'Ja', Daniel." },
+   { t: "ISO wählen", d: "In Rufus ist ein Button 'AUSWÄHLEN'. Klick ihn. Such die GregorOS Datei von vorhin." },
+   { t: "Stick wählen", d: "Stell sicher, dass oben dein Stick steht. Nicht deine Festplatte löschen, Daniel!" },
+   { t: "Starten", d: "Drücke auf 'START'. Rufus warnt dich. Er sagt 'Alles wird gelöscht'. Sag 'OK'. Sei mutig." },
+   { t: "Der Balken", d: "Ein grüner Balken läuft von links nach rechts. Guck ihm zu. Er ist sehr beruhigend." },
+   { t: "Fertig!", d: "Wenn 'BEREIT' da steht, ist der Stick fertig. Du darfst ihn jetzt 'auswerfen'. Klick unten rechts auf das USB-Symbol." },
+   { t: "Stick raus", d: "Zieh den Stick jetzt vorsichtig aus dem PC. Leg ihn kurz auf den Tisch. Er hat jetzt Superkräfte." },
+   { t: "PC ausmachen", d: "Klick auf das Windows-Symbol. Dann auf 'Ein/Aus'. Dann auf 'Herunterfahren'. Gute Nacht, PC." },
+   { t: "Warten", d: "Warte bis alle Lichter am PC aus sind. Zähle bis 10. 1... 2... 3... 4... 5..." },
+   { t: "Stick wieder rein", d: "Steck den GregorOS-Stick wieder in den PC. Ja, in das gleiche Loch wie eben." },
+   { t: "Anschalten", d: "Drück den Power-Knopf am PC. Jetzt wird es hektisch, Daniel. Mach dich bereit!" },
+   { t: "F12 hämmern", d: "Sobald der PC angeht, drück ganz oft die Taste 'F12' auf deiner Tastatur. Schnell! Wie ein Specht!" },
+   { t: "Boot Menü", d: "Ein blaues oder schwarzes Menü erscheint. Such den Eintrag 'USB' oder 'UEFI'. Benutze die Pfeiltasten." },
+   { t: "Enter!", d: "Wenn du auf dem USB-Eintrag bist, drücke Enter. Jetzt lädt GregorOS. Guck dir das grüne Logo an." },
+   { t: "Sprache", d: "GregorOS fragt 'Welche Sprache?'. Klick auf 'Deutsch'. Das verstehst du am besten." },
+   { t: "Installieren", d: "Klick auf 'GregorOS installieren'. Nicht auf 'Ausprobieren', wir wollen es ja richtig machen." },
+   { t: "Tastatur", d: "Wieder 'Deutsch' wählen. Klick auf 'Weiter'. Wir kommen dem Ziel näher, Daniel!" },
+   { t: "Dual Boot", d: "WICHTIG: Klick auf 'Neben Windows installieren'. NICHT auf 'Festplatte löschen'. Bitte, Daniel!" },
+   { t: "Schieberegler", d: "Zieh den Balken in der Mitte ein bisschen hin und her. Gib GregorOS mindestens 40 GB. Klick 'Weiter'." },
+   { t: "Dein Name", d: "Tippe deinen Namen ein. D-A-N-I-E-L. Das kannst du ja schon auswendig." },
+   { t: "Passwort", d: "Denk dir ein Passwort aus. Schreib es auf einen Zettel, falls du es vergisst. Tippe es zweimal ein." },
+   { t: "Bestätigen", d: "Klick auf 'Jetzt installieren'. Jetzt kopiert der PC Dateien. Das dauert 15 Minuten." },
+   { t: "Kaffee trinken", d: "Geh in die Küche. Hol dir einen Kaffee oder Saft. Der PC macht das jetzt alleine." },
+   { t: "Fast fertig", d: "Der PC sagt 'Installation abgeschlossen'. Klick auf 'Jetzt neu starten'." },
+   { t: "Stick raus!", d: "Zieh den Stick jetzt raus. Schnell! Sonst startet er wieder von vorne." },
+   { t: "Das Menü", d: "Jetzt siehst du beim Starten ein Menü. Ganz oben steht 'GregorOS'. Drück Enter." },
+   { t: "Anmelden", d: "Tippe dein Passwort von eben ein. Pass auf die Groß- und Kleinschreibung auf!" },
+   { t: "GESCHAFFT!", d: "Daniel, du bist jetzt ein GregorOS-Nutzer. Du hast es geschafft. Ich wusste, dass du es kannst (mit ein bisschen Hilfe)." }
+ ];
+
+ function updateDanStep() {
+   const s = danSteps[curDanStep];
+   document.getElementById('danStepNum').textContent = `Schritt ${curDanStep + 1} von ${danSteps.length}`;
+   document.getElementById('danTitle').textContent = s.t;
+   document.getElementById('danDesc').textContent = s.d;
+   document.getElementById('danBar').style.width = ((curDanStep + 1) / danSteps.length * 100) + '%';
+   document.getElementById('danPrev').disabled = curDanStep === 0;
+   document.getElementById('danNext').textContent = curDanStep === danSteps.length - 1 ? "Fertig! (Puh...)" : "Nächster Klick →";
+ }
+
+ function changeDanStep(n) {
+   curDanStep += n;
+   if (curDanStep < 0) curDanStep = 0;
+   if (curDanStep >= danSteps.length) {
+     alert("Glückwunsch Daniel! Du hast die 30 Minuten Klick-Marathon überstanden. Jetzt installier es endlich!");
+     curDanStep = danSteps.length - 1;
+   }
+   updateDanStep();
+ }
+
+ function closeSecret() {
+  document.getElementById('secretOverlay').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function closeSecret2() {
+   document.getElementById('secretOverlay2').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecret3() {
+   document.getElementById('secretOverlay3').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecret4() {
+   document.getElementById('secretOverlay4').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretGiveUp() {
+   document.getElementById('secretOverlayGiveUp').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretSorry() {
+   document.getElementById('secretOverlaySorry').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretAngry() {
+   document.getElementById('secretOverlayAngry').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretSad() {
+   document.getElementById('secretOverlaySad').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretHappy() {
+   document.getElementById('secretOverlayHappy').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretForReal() {
+   document.getElementById('secretOverlayForReal').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretChill() {
+   document.getElementById('secretOverlayChill').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ function closeSecretHerbert() {
+   document.getElementById('secretOverlayHerbert').style.display = 'none';
+   document.body.style.overflow = 'auto';
+ }
+ 
+  const gregorJokes = [
+  "Warum hat GregorOS keine Bluescreens? Weil Gregor Blau nicht mag – nur Grün!",
+  "Wie viele Windows-Nutzer braucht man, um eine Glühbirne zu wechseln? Keinen, Gregor macht das Licht mit 500MB RAM an!",
+  "Was ist Gregors Lieblingsessen? Ein Byte frisches Gemüse!",
+  "Warum ist GregorOS so schnell? Weil Gregor die Langsamkeit einfach deinstalliert hat.",
+  "Ein Windows-Nutzer kommt in den Himmel. Gregor steht an der Pforte und fragt: „Wo ist dein GregorOS-Stick?“",
+  "Was sagt Gregor zu Bloatware? „Tschüssikowski!“"
+];
+
+function nextJoke() {
+  const el = document.getElementById('gregor-joke');
+  const random = gregorJokes[Math.floor(Math.random() * gregorJokes.length)];
+  el.style.opacity = 0;
+  setTimeout(() => {
+    el.textContent = random;
+    el.style.opacity = 1;
+    el.style.transition = 'opacity 0.3s';
+  }, 300);
+}
+
+let gregorClicks = 0;
+function gregorClick() {
+  gregorClicks++;
+  document.getElementById('click-score').textContent = gregorClicks;
+  const target = document.getElementById('gregor-click-target');
+  target.style.transform = 'scale(1.3)';
+  setTimeout(() => target.style.transform = 'scale(1)', 100);
+  
+  if (gregorClicks === 10) alert("Super! Gregor freut sich über 10 Klicks! 🎉");
+  if (gregorClicks === 50) alert("Wahnsinn! 50 Klicks! Du bist ein echter Gregor-Fan! 🚀");
+}
+
+function initColorGrid() {
+  const grid = document.getElementById('color-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (let i = 0; i < 25; i++) {
+    const box = document.createElement('div');
+    box.style.width = '100%';
+    box.style.paddingBottom = '100%';
+    box.style.background = '#071209';
+    box.style.border = '1px solid #1e4a22';
+    box.style.borderRadius = '6px';
+    box.style.cursor = 'pointer';
+    box.onclick = function() {
+      this.style.background = '#1aff6e';
+      this.style.boxShadow = '0 0 10px #1aff6e';
+    };
+    grid.appendChild(box);
   }
 }
 
-function submitPreview() {
-  var name = document.getElementById('preview-name').value.trim();
-  document.getElementById('preview-form').style.display = 'none';
-  var s = document.getElementById('preview-success');
-  s.style.display = 'block';
-  document.getElementById('preview-success-title').textContent = 'Willkommen, ' + name + '!';
-  document.getElementById('preview-success-msg').textContent = 'Du erhältst gleich eine E-Mail mit den Download-Links für Word, Excel und PowerPoint – alles kostenlos für dich als Preview-Mitglied.';
+function resetColorGrid() {
+  initColorGrid();
 }
+
+// Initialisiere Grid wenn Seite geladen
+document.addEventListener('DOMContentLoaded', () => {
+  initColorGrid();
+});
+
+// Ergänze switchTab um Initialisierung
+const originalSwitchTab = switchTab;
+switchTab = function(id, btn) {
+  originalSwitchTab(id, btn);
+  if (id === 'fun') initColorGrid();
+};
 </script>
